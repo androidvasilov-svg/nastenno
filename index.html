@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Настенно</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="УФ-печать на стенах. Примерьте сюжет на свою стену и сразу увидите цену.">
+<meta name="description" content="УФ-печать на стенах в Екатеринбурге и Свердловской области. Примерьте сюжет на свою стену и сразу увидите цену.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Oswald:wght@500;700&display=swap">
@@ -133,6 +133,13 @@ select, input[type=text], input[type=tel], textarea { width: 100%; min-height: 5
 .tile.w2 { grid-column: span 2; }
 .tile.w3 { grid-column: span 3; min-height: 230px; }
 
+.work { margin: 0; display: grid; gap: 8px; min-width: 0; }
+.work img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+.work figcaption { font: 400 14px/1.35 var(--mono); }
+.rev { display: grid; gap: 12px; align-content: space-between; background: var(--paper); padding: 22px; text-decoration: none; min-width: 0; }
+.contacts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.contacts .btn { border-color: #fff; color: #fff; }
+
 /* как работаем */
 .steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 2px solid var(--ink); list-style: none; margin: 0; padding: 0; }
 .steps li { padding: 20px 22px 8px 0; display: grid; gap: 10px; align-content: start; min-width: 0; }
@@ -154,7 +161,7 @@ tbody th { font-weight: 500; color: #c5cad0; }
 tbody td:nth-child(2) { font-weight: 700; }
 
 /* тарифы */
-.scale { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border: 2px solid var(--ink); background: var(--paper); }
+.scale { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 2px solid var(--ink); background: var(--paper); }
 .tier { padding: 20px 18px; display: grid; gap: 6px; border-right: 2px solid var(--ink); min-width: 0; transition: background .2s, color .2s; }
 .tier:last-child { border-right: 0; }
 .tier .a { font: 500 14px var(--mono); }
@@ -230,7 +237,7 @@ footer .logo { color: var(--paper); }
       <div class="hero-text">
         <h1>Напечатаем <em>прямо на&nbsp;стене</em></h1>
         <div class="hero-side">
-          <p class="lead">Привозим УФ-принтер на объект и переносим любое изображение на стену. Без обоев, краски и пыли. Цену видите сразу, ещё до звонка.</p>
+          <p class="lead">Привозим УФ-принтер на объект в Екатеринбурге и Свердловской области и переносим любое изображение на стену. Без обоев, краски и пыли. Цену видите сразу, ещё до звонка.</p>
           <div class="hero-actions">
             <a class="btn" href="#fit">Примерить на стену</a>
             <a class="btn ghost" href="#price">Смотреть цены</a>
@@ -243,7 +250,7 @@ footer .logo { color: var(--paper); }
           <div class="ink" id="heroArt"></div>
           <div class="head-rig"><b></b></div>
         </div>
-        <div class="sizes"><span>5,0 × 2,0 м = 10 м²</span><span>УФ-чернила, сохнуть не нужно</span><span id="heroPrice"></span></div>
+        <div class="sizes"><span>5,0 × 2,0 м = 10 м²</span><span>Гарантия 5 лет на цвет в помещении</span><span id="heroPrice"></span></div>
       </div>
     </div>
   </section>
@@ -296,6 +303,20 @@ footer .logo { color: var(--paper); }
     </div>
   </section>
 
+  <section class="band" id="works" style="padding-top:0" hidden>
+    <div class="wrap">
+      <div class="head"><span class="label">Портфолио</span><h2>Наши работы</h2></div>
+      <div class="mosaic" id="worksGrid"></div>
+    </div>
+  </section>
+
+  <section class="band" id="reviews" style="padding-top:0" hidden>
+    <div class="wrap">
+      <div class="head"><span class="label">Клиенты</span><h2>Отзывы</h2></div>
+      <div class="mosaic" id="reviewsGrid"></div>
+    </div>
+  </section>
+
   <section class="band" id="how" style="padding-top:0">
     <div class="wrap">
       <div class="head"><span class="label">От заявки до готовой стены</span><h2>Как работаем</h2></div>
@@ -343,6 +364,7 @@ footer .logo { color: var(--paper); }
       <div class="head"><span class="label">Перед заказом</span><h2>Вопросы</h2></div>
       <div>
         <details open><summary>На каких стенах можно печатать?</summary><p>На окрашенных, оштукатуренных, бетонных и кирпичных, а также на стекле, дереве и плитке. Для глубокого рельефа сначала делаем пробу на небольшом участке.</p></details>
+        <details><summary>Какая гарантия?</summary><p>Даём гарантию 5 лет на сохранение цвета изображения внутри помещения. Условия закрепляем в договоре.</p></details>
         <details><summary>Нужно ли готовить стену?</summary><p>Стена должна быть чистой и сухой. Перед принтером нужен свободный проход примерно 1 метр. По фото скажем, что ещё понадобится.</p></details>
         <details><summary>Какой файл подойдёт?</summary><p>Чем выше разрешение, тем лучше. Мы проверим файл и предупредим, если на большой площади он будет выглядеть размыто. Дизайнер может подготовить или перерисовать изображение.</p></details>
         <details><summary>Почему окончательная цена может отличаться?</summary><p>Калькулятор считает по средним условиям. На цену могут повлиять высота работ, доступ к стене и удалённость объекта. Итоговую сумму фиксируем в договоре до начала работ.</p></details>
@@ -355,6 +377,7 @@ footer .logo { color: var(--paper); }
       <div>
         <h2>Пришлите стену, мы посчитаем точно</h2>
         <p class="lead">Ваш расчёт из примерочной уже добавлен в заявку.</p>
+        <div class="contacts" id="contacts"></div>
       </div>
       <form id="form">
         <div class="field"><label for="fn">Имя</label><input id="fn" type="text" autocomplete="name" required></div>
@@ -372,6 +395,7 @@ footer .logo { color: var(--paper); }
   <div class="wrap">
     <span class="logo"><span class="cmyk"><i></i><i></i><i></i></span>Настенно</span>
     <span data-phone-text>+7 (000) 000-00-00</span>
+    <span>Екатеринбург и Свердловская область</span>
     <span>Реквизиты компании будут здесь</span>
   </div>
 </footer>
@@ -382,12 +406,18 @@ const CONFIG = {
   phone: "+7 (000) 000-00-00",
   phoneHref: "tel:+70000000000",
   endpoint: null, // адрес приёма заявок; пока null, форма работает в демо-режиме
-  minOrder: 29000,
+  telegram: "", // ссылка вида https://t.me/имя
+  max: "",      // ссылка на профиль в MAX
+  email: "",
+  // Настоящие фото работ: { src: "works/1.jpg", title: "Кафе, 12 м²" }. Пока пусто, блок скрыт.
+  works: [],
+  // Только настоящие отзывы: { name: "Имя", text: "Текст", url: "ссылка на источник" }. Пока пусто, блок скрыт.
+  reviews: [],
+  minOrder: 34900,
   tiers: [
-    { from: 0,   to: 10,       rate: 4900 },
-    { from: 10,  to: 30,       rate: 4400 },
-    { from: 30,  to: 60,       rate: 3900 },
-    { from: 60,  to: 100,      rate: 3400 },
+    { from: 0,   to: 25,       rate: 4900 },
+    { from: 25,  to: 50,       rate: 4490 },
+    { from: 50,  to: 100,      rate: 3900 },
     { from: 100, to: Infinity, rate: 2900 }
   ],
   surfaces: [
@@ -529,7 +559,32 @@ CONFIG.tiers.forEach(t => {
   d.innerHTML = `<span class="a">${a}</span><span class="r">${t.rate.toLocaleString("ru-RU")} ₽</span><span class="u">за м²</span>`;
   $("scale").append(d);
 });
-$("priceNote").textContent = `Минимальный заказ ${rub(CONFIG.minOrder)}. Цена печати и выезда по городу включены. Фактурные поверхности считаются с коэффициентом, он показан в примерочной.`;
+$("priceNote").textContent = `Минимальный заказ ${rub(CONFIG.minOrder)}, это стена примерно до 7 м². Фактурные поверхности считаются с коэффициентом, он показан в примерочной. Гарантия 5 лет на сохранение цвета внутри помещения.`;
+
+if (CONFIG.works.length) {
+  $("works").hidden = false;
+  CONFIG.works.forEach(w => {
+    const f = document.createElement("figure"); f.className = "work";
+    const i = new Image(); i.src = w.src; i.alt = w.title; i.loading = "lazy";
+    const c = document.createElement("figcaption"); c.textContent = w.title;
+    f.append(i, c); $("worksGrid").append(f);
+  });
+}
+if (CONFIG.reviews.length) {
+  $("reviews").hidden = false;
+  CONFIG.reviews.forEach(r => {
+    const a = document.createElement(r.url ? "a" : "div"); a.className = "rev";
+    if (r.url) { a.href = r.url; a.target = "_blank"; a.rel = "noopener"; }
+    const t = document.createElement("p"); t.textContent = r.text;
+    const n = document.createElement("b"); n.textContent = r.name;
+    a.append(t, n); $("reviewsGrid").append(a);
+  });
+}
+[["Telegram", CONFIG.telegram], ["MAX", CONFIG.max], ["Почта", CONFIG.email && "mailto:" + CONFIG.email]].forEach(([name, href]) => {
+  if (!href) return;
+  const a = document.createElement("a"); a.className = "btn ghost"; a.href = href; a.textContent = name;
+  $("contacts").append(a);
+});
 
 document.querySelectorAll("[data-phone]").forEach(a => { a.textContent = CONFIG.phone; a.href = CONFIG.phoneHref; });
 document.querySelectorAll("[data-phone-text]").forEach(a => a.textContent = CONFIG.phone);
