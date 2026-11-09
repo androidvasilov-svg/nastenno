@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Настенно</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="УФ-печать на стенах. Примерьте сюжет на свою стену и сразу увидите цену.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Oswald:wght@500;700&display=swap">
+<style>
+/* Layout concept: страница как лист на печатном столе — серая стена, метки приводки, шкала CMYK, размеры в метрах. Намеренно одна светлая тема. */
+:root {
+  --wall: #dfe2e0;
+  --wall-2: #eef0ee;
+  --ink: #12151a;
+  --ink-2: #4b5159;
+  --line: #12151a33;
+  --c: #009fe3;
+  --m: #e6007e;
+  --y: #ffdd00;
+  --paper: #fbfcfb;
+  --disp: "Oswald", "Arial Narrow", Impact, sans-serif;
+  --body: "Golos Text", "Segoe UI", Arial, sans-serif;
+  --mono: "IBM Plex Mono", Consolas, monospace;
+  --gut-l: max(16px, env(safe-area-inset-left, 0px));
+  --gut-r: max(16px, env(safe-area-inset-right, 0px));
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body { margin: 0; background: var(--wall); color: var(--ink); font: 400 17px/1.55 var(--body); overflow-x: hidden; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--ink); }
+h1, h2, h3, p { margin: 0; }
+h1, h2 { font-family: var(--disp); font-weight: 700; text-transform: uppercase; line-height: 1.02; text-wrap: balance; }
+h2 { font-size: clamp(38px, 6vw, 72px); }
+h3 { font-size: 20px; line-height: 1.25; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--m); outline-offset: 2px; }
+.wrap { max-width: 1240px; margin-inline: auto; padding-left: var(--gut-l); padding-right: var(--gut-r); }
+.band { padding-block: clamp(56px, 8vw, 104px); }
+.label { font: 500 13px/1.3 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+.lead { font-size: 19px; max-width: 58ch; color: var(--ink-2); }
+.head { display: grid; gap: 14px; margin-bottom: clamp(28px, 4vw, 48px); }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 12px 26px; border: 2px solid var(--ink); background: var(--ink); color: var(--paper); font: 700 16px/1.2 var(--body); text-decoration: none; cursor: pointer; transition: background .15s, border-color .15s, color .15s; }
+.btn:hover { background: var(--m); border-color: var(--m); color: #fff; }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.ghost:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
+/* шапка */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--ink); color: var(--paper); }
+.top .wrap { display: flex; align-items: center; gap: 28px; min-height: 60px; }
+.logo { font: 700 25px/1 var(--disp); letter-spacing: .03em; text-transform: uppercase; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+.cmyk { display: inline-flex; }
+.cmyk i { width: 8px; height: 18px; display: block; }
+.cmyk i:nth-child(1) { background: var(--c); }
+.cmyk i:nth-child(2) { background: var(--m); }
+.cmyk i:nth-child(3) { background: var(--y); }
+.top nav { display: flex; gap: 24px; margin-left: auto; font-size: 15px; }
+.top nav a { text-decoration: none; opacity: .85; }
+.top nav a:hover { opacity: 1; color: var(--y); }
+.top .call { font: 500 15px var(--mono); white-space: nowrap; text-decoration: none; }
+
+/* первый экран */
+.hero { padding-block: clamp(32px, 5vw, 60px) clamp(40px, 6vw, 72px); }
+.hero-text { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 32px; align-items: end; margin-bottom: clamp(24px, 3.5vw, 40px); }
+h1 { font-size: clamp(50px, 9.2vw, 124px); line-height: .96; }
+h1 em { font-style: normal; color: var(--m); }
+.hero-side { display: grid; gap: 20px; min-width: 0; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.sheet { position: relative; padding: 26px 26px 34px; }
+.mark { position: absolute; width: 18px; height: 18px; }
+.mark::before, .mark::after { content: ""; position: absolute; background: var(--ink); }
+.mark::before { left: 8px; top: 0; width: 1.5px; height: 18px; }
+.mark::after { top: 8px; left: 0; height: 1.5px; width: 18px; }
+.mark.a { left: 0; top: 0; } .mark.b { right: 0; top: 0; } .mark.c { left: 0; bottom: 8px; } .mark.d { right: 0; bottom: 8px; }
+.bigwall { position: relative; aspect-ratio: 5 / 2; background: var(--wall-2); overflow: hidden; }
+.bigwall .ink, .bigwall .ink svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.head-rig { position: absolute; top: 0; bottom: 0; left: 100%; width: 34px; margin-left: -17px; background: var(--ink); opacity: 0; display: grid; place-items: center; }
+.head-rig b { width: 12px; height: 34%; background: linear-gradient(var(--c) 0 33%, var(--m) 33% 66%, var(--y) 66%); }
+@media (prefers-reduced-motion: no-preference) {
+  .bigwall .ink { animation: reveal 5.5s cubic-bezier(.35,.05,.5,1) both; }
+  .head-rig { animation: travel 5.5s cubic-bezier(.35,.05,.5,1) both, off .5s 5.5s forwards; }
+}
+@keyframes reveal { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes travel { from { left: 0; opacity: 1; } to { left: 100%; opacity: 1; } }
+@keyframes off { from { opacity: 1; } to { opacity: 0; } }
+.sizes { position: absolute; left: 26px; right: 26px; bottom: 6px; display: flex; justify-content: space-between; gap: 12px; font: 500 12.5px/1.3 var(--mono); color: var(--ink-2); }
+
+/* примерочная */
+.fit { background: var(--paper); }
+.fit-grid { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(300px, 1fr); gap: clamp(24px, 3vw, 44px); align-items: start; }
+.stage { position: relative; aspect-ratio: 2 / 1; overflow: hidden; touch-action: none; background-color: #d9d7d0; user-select: none; }
+.stage[data-s="smooth"] { background: #dcdad3; }
+.stage[data-s="plaster"] { background: radial-gradient(#0000000f 1px, transparent 1.5px) 0 0 / 7px 7px, #d6d3ca; }
+.stage[data-s="brick"] { background: repeating-linear-gradient(0deg, #6b3a2c 0 2px, transparent 2px 22px), repeating-linear-gradient(90deg, #6b3a2c 0 2px, transparent 2px 46px), #a85b43; }
+.stage[data-s="concrete"] { background: linear-gradient(90deg, #0000 49.8%, #0002 50%, #0000 50.2%) 0 0 / 180px 100%, #a9aba8; }
+.floor { position: absolute; left: 0; right: 0; bottom: 0; height: 2.5%; background: var(--ink); }
+.print { position: absolute; cursor: grab; outline: 1.5px dashed #fff; box-shadow: 0 0 0 1.5px #0005; overflow: hidden; background-size: cover; background-position: center; }
+.print:active { cursor: grabbing; }
+.print svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
+.human { position: absolute; bottom: 2.5%; pointer-events: none; }
+.human svg { display: block; height: 100%; width: auto; fill: var(--ink); }
+.tag { position: absolute; left: 10px; top: 10px; background: var(--ink); color: var(--paper); font: 500 13px var(--mono); padding: 4px 9px; pointer-events: none; }
+.hint { margin-top: 10px; font: 400 13.5px/1.4 var(--mono); color: var(--ink-2); }
+.arts { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; margin-top: 16px; }
+.art-btn { position: relative; aspect-ratio: 1; padding: 0; border: 3px solid transparent; background: var(--wall); cursor: pointer; overflow: hidden; }
+.art-btn svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.art-btn[aria-pressed="true"] { border-color: var(--m); }
+.art-btn.up { display: grid; place-items: center; font: 500 12px/1.2 var(--mono); color: var(--ink); background: var(--wall-2); border: 2px dashed var(--ink-2); }
+.panel { display: grid; gap: 20px; min-width: 0; }
+.field { display: grid; gap: 7px; }
+.field > label, .field > .flab { display: flex; justify-content: space-between; gap: 10px; font-size: 15px; font-weight: 500; }
+.field output { font: 500 15px var(--mono); }
+input[type=range] { width: 100%; accent-color: var(--m); height: 26px; margin: 0; }
+select, input[type=text], input[type=tel], textarea { width: 100%; min-height: 50px; padding: 11px 13px; border: 2px solid var(--ink); border-radius: 0; background: var(--paper); color: var(--ink); font: 400 16px var(--body); }
+.sum { background: var(--ink); color: var(--paper); padding: 22px; display: grid; gap: 8px; }
+.sum .label { color: #c5cad0; }
+.price { font: 700 clamp(46px, 5vw, 62px)/1 var(--disp); font-variant-numeric: tabular-nums; }
+.sum p { font: 400 14px/1.45 var(--mono); color: #dce0e4; }
+.sum .save { color: var(--y); }
+.sum .btn { background: var(--y); border-color: var(--y); color: var(--ink); margin-top: 8px; }
+.sum .btn:hover { background: var(--paper); border-color: var(--paper); color: var(--ink); }
+
+/* сюжеты */
+.mosaic { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.tile { position: relative; display: block; min-height: 270px; padding: 0; border: 0; overflow: hidden; background: var(--ink); text-align: left; color: var(--paper); cursor: pointer; font: inherit; }
+.tile svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; transition: transform .5s; }
+.tile:hover svg { transform: scale(1.04); }
+.tile span { position: absolute; left: 0; bottom: 0; background: var(--ink); padding: 9px 13px; display: grid; }
+.tile b { font-size: 16px; line-height: 1.25; }
+.tile small { font: 400 12.5px/1.3 var(--mono); color: #c5cad0; }
+.tile.w2 { grid-column: span 2; }
+.tile.w3 { grid-column: span 3; min-height: 230px; }
+
+/* как работаем */
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 2px solid var(--ink); list-style: none; margin: 0; padding: 0; }
+.steps li { padding: 20px 22px 8px 0; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.steps .n { font: 700 54px/1 var(--disp); }
+.steps li:nth-child(1) .n { color: var(--c); }
+.steps li:nth-child(2) .n { color: var(--m); }
+.steps li:nth-child(3) .n { color: #c9a800; }
+.steps p { color: var(--ink-2); font-size: 16px; }
+
+/* сравнение */
+.cmp { background: var(--ink); color: var(--paper); }
+.cmp .label, .cmp .lead { color: #c5cad0; }
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; min-width: 660px; font-size: 16px; }
+th, td { text-align: left; padding: 15px 18px 15px 0; border-bottom: 1px solid #ffffff33; vertical-align: top; }
+thead th { font: 500 13px var(--mono); text-transform: uppercase; letter-spacing: .05em; color: #c5cad0; }
+thead th:nth-child(2) { color: var(--y); }
+tbody th { font-weight: 500; color: #c5cad0; }
+tbody td:nth-child(2) { font-weight: 700; }
+
+/* тарифы */
+.scale { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border: 2px solid var(--ink); background: var(--paper); }
+.tier { padding: 20px 18px; display: grid; gap: 6px; border-right: 2px solid var(--ink); min-width: 0; transition: background .2s, color .2s; }
+.tier:last-child { border-right: 0; }
+.tier .a { font: 500 14px var(--mono); }
+.tier .r { font: 700 40px/1.05 var(--disp); font-variant-numeric: tabular-nums; }
+.tier .u { font: 400 13px var(--mono); }
+.tier.on { background: var(--y); }
+.note { margin-top: 16px; color: var(--ink-2); font-size: 16px; max-width: 76ch; }
+
+/* вопросы */
+.qa { background: var(--paper); }
+.qa-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 32px; }
+details { border-bottom: 2px solid var(--ink); }
+details:first-child { border-top: 2px solid var(--ink); }
+summary { cursor: pointer; padding: 18px 0; font-size: 19px; font-weight: 500; }
+details p { padding-bottom: 20px; color: var(--ink-2); max-width: 62ch; }
+
+/* заявка */
+.lead-form { background: var(--m); color: #fff; }
+.form-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
+.lead-form .lead { color: #fff; margin-top: 16px; }
+form { display: grid; gap: 14px; background: var(--paper); color: var(--ink); padding: 24px; min-width: 0; }
+form .field > label { font-size: 15px; }
+.check { display: flex; gap: 10px; font-size: 14px; line-height: 1.4; align-items: flex-start; }
+.check input { width: 20px; height: 20px; margin: 1px 0 0; flex: none; accent-color: var(--m); }
+.done { font: 400 14px/1.5 var(--mono); background: var(--wall); padding: 13px; white-space: pre-line; }
+
+footer { background: var(--ink); color: #c5cad0; padding-block: 32px; font-size: 14.5px; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px 40px; align-items: center; }
+footer .logo { color: var(--paper); }
+
+@media (max-width: 980px) {
+  .top nav { display: none; }
+  .top .call { margin-left: auto; }
+  .hero-text, .fit-grid, .qa-grid, .form-grid { grid-template-columns: minmax(0, 1fr); }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .scale { grid-template-columns: minmax(0, 1fr); }
+  .tier { grid-template-columns: 1fr auto; align-items: baseline; border-right: 0; border-bottom: 2px solid var(--ink); }
+  .tier:last-child { border-bottom: 0; }
+  .tier .u { grid-column: 2; text-align: right; }
+}
+@media (max-width: 640px) {
+  .sheet { padding: 20px 20px 84px; }
+  .sizes { left: 20px; right: 20px; flex-direction: column; gap: 0; bottom: 4px; }
+  .bigwall { aspect-ratio: 3 / 2; }
+  .mosaic { grid-template-columns: minmax(0, 1fr); }
+  .tile.w2, .tile.w3 { grid-column: auto; }
+  .tile, .tile.w3 { min-height: 210px; }
+  .stage { aspect-ratio: 3 / 2; }
+  .arts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .steps { grid-template-columns: minmax(0, 1fr); }
+  .top .call { font-size: 13px; }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top"><span class="cmyk"><i></i><i></i><i></i></span>Настенно</a>
+    <nav aria-label="Разделы">
+      <a href="#fit">Примерочная</a>
+      <a href="#ideas">Сюжеты</a>
+      <a href="#how">Как работаем</a>
+      <a href="#price">Цены</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <a class="call" data-phone href="tel:+70000000000">+7 (000) 000-00-00</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-text">
+        <h1>Напечатаем <em>прямо на&nbsp;стене</em></h1>
+        <div class="hero-side">
+          <p class="lead">Привозим УФ-принтер на объект и переносим любое изображение на стену. Без обоев, краски и пыли. Цену видите сразу, ещё до звонка.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#fit">Примерить на стену</a>
+            <a class="btn ghost" href="#price">Смотреть цены</a>
+          </div>
+        </div>
+      </div>
+      <div class="sheet">
+        <i class="mark a"></i><i class="mark b"></i><i class="mark c"></i><i class="mark d"></i>
+        <div class="bigwall" role="img" aria-label="Принтер печатает на стене горный пейзаж">
+          <div class="ink" id="heroArt"></div>
+          <div class="head-rig"><b></b></div>
+        </div>
+        <div class="sizes"><span>5,0 × 2,0 м = 10 м²</span><span>УФ-чернила, сохнуть не нужно</span><span id="heroPrice"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band fit" id="fit">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">Примерочная</span>
+        <h2>Сначала на экране, потом на стене</h2>
+        <p class="lead">Выберите сюжет или загрузите своё фото, задайте размер и передвиньте печать пальцем. Фото остаётся на вашем устройстве.</p>
+      </div>
+      <div class="fit-grid">
+        <div style="min-width:0">
+          <div class="stage" id="stage" data-s="smooth">
+            <div class="print" id="print" role="img" aria-label="Изображение на стене"></div>
+            <div class="human" id="human" aria-hidden="true"><svg viewBox="0 0 40 120"><circle cx="20" cy="11" r="10"/><path d="M8 25h24l5 44h-7l-2-22-1 73h-9l-2-48-2 48h-9l-1-73-2 22H3z"/></svg></div>
+            <div class="floor"></div>
+            <div class="tag" id="tag"></div>
+          </div>
+          <p class="hint">Силуэт человека 175 см показывает масштаб.</p>
+          <div class="arts" id="arts"></div>
+          <input id="file" type="file" accept="image/*" hidden>
+        </div>
+        <div class="panel">
+          <div class="field"><label for="w">Ширина печати <output id="wo"></output></label><input id="w" type="range" min="1" max="12" step="0.1" value="4.5"></div>
+          <div class="field"><label for="h">Высота печати <output id="ho"></output></label><input id="h" type="range" min="0.5" max="4" step="0.1" value="2.4"></div>
+          <div class="field"><label for="n">Сколько таких стен <output id="no"></output></label><input id="n" type="range" min="1" max="12" step="1" value="1"></div>
+          <div class="field"><label for="surf">Поверхность</label><select id="surf"></select></div>
+          <div class="field"><label for="des">Макет</label><select id="des"></select></div>
+          <div class="sum" aria-live="polite">
+            <span class="label">Предварительная цена</span>
+            <div class="price" id="total"></div>
+            <p id="detail"></p>
+            <p class="save" id="save" hidden></p>
+            <a class="btn" href="#order">Отправить этот расчёт</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="ideas">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">Сюжеты для примерки</span>
+        <h2>Что можно напечатать</h2>
+        <p class="lead">Это эскизы для примера. Нажмите на любой, и он откроется в примерочной.</p>
+      </div>
+      <div class="mosaic" id="mosaic"></div>
+    </div>
+  </section>
+
+  <section class="band" id="how" style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><span class="label">От заявки до готовой стены</span><h2>Как работаем</h2></div>
+      <ol class="steps">
+        <li><span class="n">1</span><h3>Считаем</h3><p>Присылаете фото стены и размеры. Подтверждаем цену и условия в договоре.</p></li>
+        <li><span class="n">2</span><h3>Готовим макет</h3><p>Берём ваш файл или рисуем новый. Показываем, как он ляжет на вашу стену.</p></li>
+        <li><span class="n">3</span><h3>Приезжаем</h3><p>В удобный день ставим принтер, закрываем пол и мебель, калибруем цвет.</p></li>
+        <li><span class="n">4</span><h3>Печатаем</h3><p>Чернила застывают под УФ-лампой сразу. Убираем оборудование, и стеной можно пользоваться.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band cmp">
+    <div class="wrap">
+      <div class="head"><span class="label">С чем сравнивают</span><h2>Печать, роспись или обои</h2></div>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>&nbsp;</th><th>Печать на стене</th><th>Ручная роспись</th><th>Фотообои</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Сроки</th><td>Часы</td><td>Дни или недели</td><td>Заказ, доставка, поклейка</td></tr>
+            <tr><th scope="row">Точность</th><td>Как в файле</td><td>Авторская манера</td><td>Как в файле, есть стыки</td></tr>
+            <tr><th scope="row">Грязь на объекте</th><td>Минимум</td><td>Краска и запах</td><td>Клей, обрезки</td></tr>
+            <tr><th scope="row">Кирпич и бетон</th><td>Да</td><td>Да</td><td>Нужно выравнивать</td></tr>
+            <tr><th scope="row">Когда лучше другое</th><td>Нужна фактура мазка</td><td>Важна рука художника</td><td>Съёмное решение на время</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="price">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">Цена за м² без пропусков</span>
+        <h2>Чем больше стена, тем ниже ставка</h2>
+        <p class="lead">Любая площадь попадает в один из диапазонов. Жёлтым отмечен ваш расчёт из примерочной.</p>
+      </div>
+      <div class="scale" id="scale"></div>
+      <p class="note" id="priceNote"></p>
+    </div>
+  </section>
+
+  <section class="band qa" id="faq">
+    <div class="wrap qa-grid">
+      <div class="head"><span class="label">Перед заказом</span><h2>Вопросы</h2></div>
+      <div>
+        <details open><summary>На каких стенах можно печатать?</summary><p>На окрашенных, оштукатуренных, бетонных и кирпичных, а также на стекле, дереве и плитке. Для глубокого рельефа сначала делаем пробу на небольшом участке.</p></details>
+        <details><summary>Нужно ли готовить стену?</summary><p>Стена должна быть чистой и сухой. Перед принтером нужен свободный проход примерно 1 метр. По фото скажем, что ещё понадобится.</p></details>
+        <details><summary>Какой файл подойдёт?</summary><p>Чем выше разрешение, тем лучше. Мы проверим файл и предупредим, если на большой площади он будет выглядеть размыто. Дизайнер может подготовить или перерисовать изображение.</p></details>
+        <details><summary>Почему окончательная цена может отличаться?</summary><p>Калькулятор считает по средним условиям. На цену могут повлиять высота работ, доступ к стене и удалённость объекта. Итоговую сумму фиксируем в договоре до начала работ.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="band lead-form" id="order">
+    <div class="wrap form-grid">
+      <div>
+        <h2>Пришлите стену, мы посчитаем точно</h2>
+        <p class="lead">Ваш расчёт из примерочной уже добавлен в заявку.</p>
+      </div>
+      <form id="form">
+        <div class="field"><label for="fn">Имя</label><input id="fn" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="fp">Телефон</label><input id="fp" type="tel" autocomplete="tel" inputmode="tel" required></div>
+        <div class="field"><label for="fc">Расчёт</label><textarea id="fc" rows="3"></textarea></div>
+        <label class="check"><input id="fa" type="checkbox" required><span>Даю согласие на обработку персональных данных</span></label>
+        <button class="btn" type="submit">Отправить заявку</button>
+        <div class="done" id="done" hidden></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="logo"><span class="cmyk"><i></i><i></i><i></i></span>Настенно</span>
+    <span data-phone-text>+7 (000) 000-00-00</span>
+    <span>Реквизиты компании будут здесь</span>
+  </div>
+</footer>
+
+<script>
+/* Всё, что нужно заменить перед запуском, находится здесь */
+const CONFIG = {
+  phone: "+7 (000) 000-00-00",
+  phoneHref: "tel:+70000000000",
+  endpoint: null, // адрес приёма заявок; пока null, форма работает в демо-режиме
+  minOrder: 29000,
+  tiers: [
+    { from: 0,   to: 10,       rate: 4900 },
+    { from: 10,  to: 30,       rate: 4400 },
+    { from: 30,  to: 60,       rate: 3900 },
+    { from: 60,  to: 100,      rate: 3400 },
+    { from: 100, to: Infinity, rate: 2900 }
+  ],
+  surfaces: [
+    { id: "smooth",   name: "Гладкая окрашенная", k: 1 },
+    { id: "plaster",  name: "Фактурная штукатурка", k: 1.1 },
+    { id: "concrete", name: "Бетон", k: 1.1 },
+    { id: "brick",    name: "Кирпич", k: 1.2 }
+  ],
+  designs: [
+    { name: "Есть готовый файл", cost: 0 },
+    { name: "Доработать моё изображение", cost: 3000 },
+    { name: "Нарисовать с нуля", cost: 12000 }
+  ],
+  metersPerHour: 4
+};
+
+/* Сюжеты рисуются кодом, поэтому чужих изображений на сайте нет */
+const S = b => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${b}</svg>`;
+function ridge(y, amp, seed, fill) {
+  let d = "M0 300L0 " + y;
+  for (let x = 0; x <= 600; x += 25) {
+    const v = Math.sin(x * .017 + seed) * amp + Math.sin(x * .049 + seed * 2.3) * amp * .45 + (x % 50 ? amp * .25 : 0);
+    d += `L${x} ${(y + v).toFixed(1)}`;
+  }
+  return `<path d="${d}L600 300Z" fill="${fill}"/>`;
+}
+const ARTS = {
+  mountains: { name: "Горы", place: "Гостиная, отель", svg: () => S(`<rect width="600" height="300" fill="#ffb347"/><rect width="600" height="120" fill="#ff6f59"/><circle cx="420" cy="118" r="58" fill="#ffdd00"/>` + ridge(135, 26, 1, "#c8326b") + ridge(172, 30, 3, "#7b2a7f") + ridge(212, 24, 5, "#33266b") + ridge(255, 16, 7, "#12151a")) },
+  waves: { name: "Волна", place: "Офис, спа", svg: () => { let o = `<rect width="600" height="300" fill="#f3efe0"/>`; const c = ["#009fe3","#0b5fa5","#12305e","#00b5b8","#9fdcec"]; for (let i = 13; i >= 0; i--) o += `<circle cx="${i % 2 ? 150 : 450}" cy="330" r="${50 + i * 34}" fill="${c[i % 5]}"/>`; return S(o); } },
+  space: { name: "Космос", place: "Детская, школа", svg: () => { let o = `<rect width="600" height="300" fill="#141238"/>`; for (let i = 0; i < 90; i++) o += `<circle cx="${(i * 137.5) % 600}" cy="${(i * 71.3) % 300}" r="${1 + i % 3 * .7}" fill="#fff"/>`; o += `<circle cx="180" cy="160" r="88" fill="#e6007e"/><path d="M95 145a90 90 0 0 1 170-6c-50 22-115 26-170 6z" fill="#ff7ab8"/><ellipse cx="180" cy="160" rx="150" ry="24" fill="none" stroke="#ffdd00" stroke-width="9" transform="rotate(-16 180 160)"/><circle cx="470" cy="80" r="36" fill="#00b5b8"/><circle cx="520" cy="225" r="20" fill="#ffdd00"/>`; return S(o); } },
+  forest: { name: "Лес", place: "Кафе, клиника", svg: () => { let o = `<rect width="600" height="300" fill="#d7ecd0"/>`; const c = ["#7fb77e","#3f8f63","#1e6a57","#0f4040"]; for (let r = 0; r < 4; r++) for (let i = -1; i < 14; i++) { const x = i * 48 + r * 19, b = 150 + r * 50, h = 130 + (i * 7 + r * 11) % 50; o += `<path d="M${x} ${b - h}L${x + 42} ${b + 50}L${x - 42} ${b + 50}Z" fill="${c[r]}"/>`; } return S(o); } },
+  bauhaus: { name: "Геометрия", place: "Коворкинг, шоурум", svg: () => { const c = ["#e6007e","#009fe3","#ffdd00","#12151a","#f3efe0"]; let o = `<rect width="600" height="300" fill="#f3efe0"/>`; for (let y = 0; y < 3; y++) for (let x = 0; x < 6; x++) { const a = c[(x * 2 + y) % 5], b = c[(x + y * 3 + 2) % 5], k = (x * 3 + y * 2) % 4, X = x * 100, Y = y * 100; o += `<rect x="${X}" y="${Y}" width="100" height="100" fill="${a}"/>`; o += k == 0 ? `<circle cx="${X + 50}" cy="${Y + 50}" r="40" fill="${b}"/>` : k == 1 ? `<path d="M${X} ${Y}h100v100z" fill="${b}"/>` : k == 2 ? `<path d="M${X} ${Y + 100}a100 100 0 0 1 100-100v100z" fill="${b}"/>` : `<rect x="${X + 25}" y="${Y}" width="50" height="100" fill="${b}"/>`; } return S(o); } },
+  flowers: { name: "Цветы", place: "Салон, ресторан", svg: () => { let o = `<rect width="600" height="300" fill="#12305e"/>`; [[130,140,1.2,"#e6007e"],[320,185,1.55,"#ffb347"],[505,105,1.1,"#f3a5c6"],[30,270,.8,"#ffdd00"],[590,280,.9,"#00b5b8"]].forEach(([x,y,s,c]) => { for (let a = 0; a < 360; a += 40) o += `<ellipse cx="${x}" cy="${y - 48 * s}" rx="${19 * s}" ry="${48 * s}" fill="${c}" opacity=".88" transform="rotate(${a} ${x} ${y})"/>`; o += `<circle cx="${x}" cy="${y}" r="${17 * s}" fill="#ffdd00"/>`; }); return S(o); } }
+};
+
+const $ = id => document.getElementById(id);
+const rub = n => Math.round(n).toLocaleString("ru-RU") + " ₽";
+const m = n => n.toLocaleString("ru-RU", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const tierFor = a => CONFIG.tiers.find(t => a < t.to);
+
+function quote(area, k, design) {
+  const t = tierFor(area);
+  const print = Math.max(CONFIG.minOrder, area * t.rate * k);
+  const next = CONFIG.tiers[CONFIG.tiers.indexOf(t) + 1];
+  let cheaper = null;
+  if (next) {
+    const alt = next.from * next.rate * k;
+    if (alt < print && print > CONFIG.minOrder) cheaper = { area: next.from, saves: print - alt };
+  }
+  return { rate: t.rate, tier: t, print, total: print + design, cheaper, atMin: print === CONFIG.minOrder };
+}
+
+const state = { art: "mountains", photo: null, cx: .42, cy: .5, summary: "" };
+const stage = $("stage"), printEl = $("print");
+
+function renderArt() {
+  if (state.photo) { printEl.innerHTML = ""; printEl.style.backgroundImage = `url("${state.photo}")`; }
+  else { printEl.style.backgroundImage = ""; printEl.innerHTML = ARTS[state.art].svg(); }
+  document.querySelectorAll("[data-art]").forEach(b => b.setAttribute("aria-pressed", String(!state.photo && b.dataset.art === state.art)));
+}
+
+function geometry() {
+  const w = +$("w").value, h = +$("h").value;
+  const ratio = stage.clientWidth / stage.clientHeight || 2;
+  const vh = Math.max(3, h + .5), vw = Math.max(6, w + 1);
+  const scaleH = Math.max(vh, vw / ratio);
+  return { w, h, sw: scaleH * ratio, sh: scaleH };
+}
+
+function update() {
+  const { w, h, sw, sh } = geometry();
+  const n = +$("n").value;
+  const fw = w / sw, fh = h / sh;
+  state.cx = Math.min(1 - fw / 2, Math.max(fw / 2, state.cx));
+  state.cy = Math.min(.975 - fh / 2, Math.max(fh / 2, state.cy));
+  Object.assign(printEl.style, { width: fw * 100 + "%", height: fh * 100 + "%", left: (state.cx - fw / 2) * 100 + "%", top: (state.cy - fh / 2) * 100 + "%" });
+  const human = $("human");
+  human.style.height = 1.75 / sh * 100 + "%";
+  human.style.left = (state.cx + fw / 2 + .02 < .93 ? state.cx + fw / 2 + .02 : .02) * 100 + "%";
+
+  const area = w * h * n;
+  const surf = CONFIG.surfaces[$("surf").selectedIndex], des = CONFIG.designs[$("des").selectedIndex];
+  const q = quote(area, surf.k, des.cost);
+  const hours = Math.ceil(area / CONFIG.metersPerHour);
+  $("wo").textContent = m(w) + " м";
+  $("ho").textContent = m(h) + " м";
+  $("no").textContent = n;
+  $("tag").textContent = `${m(w)} × ${m(h)} м`;
+  $("total").textContent = rub(q.total);
+  $("detail").textContent = `${m(area)} м² · ставка ${rub(q.rate)}/м²` + (surf.k > 1 ? ` · поверхность ×${String(surf.k).replace(".", ",")}` : "") + (des.cost ? ` · макет ${rub(des.cost)}` : "") + (q.atMin ? ` · минимальный заказ ${rub(CONFIG.minOrder)}` : "") + ` · печать около ${hours} ч`;
+  const save = $("save");
+  save.hidden = !q.cheaper;
+  if (q.cheaper) save.textContent = `При ${q.cheaper.area} м² действует ставка ниже: выйдет на ${rub(q.cheaper.saves)} дешевле.`;
+  document.querySelectorAll(".tier").forEach((el, i) => el.classList.toggle("on", CONFIG.tiers[i] === q.tier));
+  const artName = state.photo ? "своё изображение" : ARTS[state.art].name;
+  state.summary = `Сюжет: ${artName}. Размер ${m(w)} × ${m(h)} м, стен: ${n}, всего ${m(area)} м². ${surf.name}. ${des.name}. Предварительно ${rub(q.total)}.`;
+  if (!$("fc").dataset.edited) $("fc").value = state.summary;
+}
+
+/* заполнение страницы */
+$("heroArt").innerHTML = ARTS.mountains.svg();
+const heroQ = quote(10, 1, 0);
+$("heroPrice").textContent = `${rub(heroQ.print)} за такую стену`;
+
+CONFIG.surfaces.forEach(s => $("surf").add(new Option(s.name + (s.k > 1 ? ` (+${Math.round((s.k - 1) * 100)}%)` : ""), s.id)));
+CONFIG.designs.forEach(d => $("des").add(new Option(d.name + (d.cost ? ` (+${rub(d.cost)})` : ""))));
+
+Object.keys(ARTS).forEach(k => {
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "art-btn"; b.dataset.art = k; b.title = ARTS[k].name;
+  b.setAttribute("aria-label", ARTS[k].name); b.innerHTML = ARTS[k].svg();
+  b.onclick = () => { state.art = k; state.photo = null; renderArt(); update(); };
+  $("arts").append(b);
+});
+const up = document.createElement("button");
+up.type = "button"; up.className = "art-btn up"; up.textContent = "Своё фото";
+up.onclick = () => $("file").click();
+$("arts").append(up);
+$("file").onchange = e => {
+  const f = e.target.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => { state.photo = r.result; renderArt(); update(); };
+  r.readAsDataURL(f);
+};
+
+["mountains|w2", "space|", "forest|", "waves|", "flowers|", "bauhaus|w3"].forEach(s => {
+  const [k, c] = s.split("|");
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "tile " + c;
+  b.innerHTML = ARTS[k].svg() + `<span><b>${ARTS[k].name}</b><small>${ARTS[k].place}</small></span>`;
+  b.onclick = () => { state.art = k; state.photo = null; renderArt(); update(); $("fit").scrollIntoView(); };
+  $("mosaic").append(b);
+});
+
+CONFIG.tiers.forEach(t => {
+  const d = document.createElement("div");
+  d.className = "tier";
+  const a = t.to === Infinity ? `от ${t.from} м²` : t.from === 0 ? `до ${t.to} м²` : `${t.from}–${t.to} м²`;
+  d.innerHTML = `<span class="a">${a}</span><span class="r">${t.rate.toLocaleString("ru-RU")} ₽</span><span class="u">за м²</span>`;
+  $("scale").append(d);
+});
+$("priceNote").textContent = `Минимальный заказ ${rub(CONFIG.minOrder)}. Цена печати и выезда по городу включены. Фактурные поверхности считаются с коэффициентом, он показан в примерочной.`;
+
+document.querySelectorAll("[data-phone]").forEach(a => { a.textContent = CONFIG.phone; a.href = CONFIG.phoneHref; });
+document.querySelectorAll("[data-phone-text]").forEach(a => a.textContent = CONFIG.phone);
+
+["w", "h", "n", "surf", "des"].forEach(id => $(id).addEventListener("input", update));
+$("fc").addEventListener("input", e => e.target.dataset.edited = "1");
+
+/* перетаскивание печати */
+let drag = null;
+printEl.addEventListener("pointerdown", e => {
+  printEl.setPointerCapture(e.pointerId);
+  drag = { x: e.clientX, y: e.clientY, cx: state.cx, cy: state.cy };
+});
+printEl.addEventListener("pointermove", e => {
+  if (!drag) return;
+  const r = stage.getBoundingClientRect();
+  state.cx = drag.cx + (e.clientX - drag.x) / r.width;
+  state.cy = drag.cy + (e.clientY - drag.y) / r.height;
+  update();
+});
+["pointerup", "pointercancel"].forEach(t => printEl.addEventListener(t, () => drag = null));
+addEventListener("resize", update);
+
+$("form").addEventListener("submit", async e => {
+  e.preventDefault();
+  const data = { name: $("fn").value.trim(), phone: $("fp").value.trim(), calc: $("fc").value.trim() };
+  const done = $("done");
+  done.hidden = false;
+  if (!CONFIG.endpoint) {
+    done.textContent = "Демо-режим: заявка никуда не отправлена.\nПодключите адрес приёма заявок в CONFIG.endpoint.";
+    return;
+  }
+  try {
+    const r = await fetch(CONFIG.endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
+    if (!r.ok) throw 0;
+    done.textContent = "Заявка отправлена. Перезвоним в рабочее время.";
+    e.target.reset();
+  } catch {
+    done.textContent = "Заявка не отправилась. Проверьте интернет и попробуйте ещё раз или позвоните: " + CONFIG.phone;
+  }
+});
+
+renderArt();
+update();
+</script>
+</body>
+</html>
