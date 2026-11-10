@@ -6,7 +6,7 @@
 <title>Настенно</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="УФ-печать на стенах в Екатеринбурге и Свердловской области. Примерьте сюжет на свою стену и сразу увидите цену.">
-<meta name="theme-color" content="#0d0e11">
+<meta name="theme-color" content="#0a1024">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Golos+Text:wght@400;500;600&display=swap">
@@ -14,9 +14,9 @@
 /* Layout concept: тёмная галерея. Стена в луче света, изображение светится и подсвечивает комнату. Намеренно одна тёмная тема. */
 :root {
   color-scheme: dark;
-  --bg: #0d0e11;
-  --bg-2: #13151a;
-  --card: #181b21;
+  --bg: #0a1024;
+  --bg-2: #0f1730;
+  --card: #131c38;
   --line: #ffffff17;
   --line-2: #ffffff2b;
   --text: #eeebe5;
@@ -53,7 +53,7 @@ a { color: inherit; }
 .btn.ghost:hover { border-color: var(--gold); color: var(--gold-2); }
 
 /* шапка */
-.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: #0d0e11cc; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: #0a1024cc; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
 .top .wrap { display: flex; align-items: center; gap: 32px; min-height: 68px; }
 .logo { font: 600 26px/1 var(--serif); letter-spacing: .02em; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
 .logo i { width: 10px; height: 10px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 14px 2px #dcbc8799; }
@@ -73,8 +73,8 @@ h1 { font-size: clamp(50px, 7vw, 96px); }
 .facts { display: flex; flex-wrap: wrap; gap: 10px 22px; color: var(--muted); font-size: 14.5px; list-style: none; padding: 0; margin: 4px 0 0; }
 .facts li { display: flex; align-items: center; gap: 8px; }
 .facts li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
-.room { position: relative; aspect-ratio: 4 / 3.1; border-radius: 28px; overflow: hidden; background: radial-gradient(120% 75% at 50% 0%, #3a352e 0%, #1e1c1a 45%, #121214 100%); box-shadow: 0 40px 80px -30px #000, inset 0 0 0 1px var(--line); isolation: isolate; }
-.room::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 17%; background: linear-gradient(#2a2420, #15120f); border-top: 1px solid #ffffff10; z-index: 3; }
+.room { position: relative; aspect-ratio: 4 / 3.1; border-radius: 28px; overflow: hidden; background: radial-gradient(120% 75% at 50% 0%, #34405f 0%, #1a2240 45%, #0d1328 100%); box-shadow: 0 40px 80px -30px #000, inset 0 0 0 1px var(--line); isolation: isolate; }
+.room::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 17%; background: linear-gradient(#1c2340, #0c1124); border-top: 1px solid #ffffff10; z-index: 3; }
 .spot { position: absolute; left: 50%; top: -10%; width: 90%; height: 85%; transform: translateX(-50%); background: radial-gradient(50% 50% at 50% 30%, #fff3dc2e, transparent 70%); z-index: 1; pointer-events: none; }
 .frame { position: absolute; left: 12%; right: 12%; top: 13%; bottom: 25%; z-index: 2; }
 .frame .glow { position: absolute; inset: -6%; filter: blur(40px) saturate(1.4); opacity: .55; transition: opacity 1s; }
@@ -88,7 +88,7 @@ h1 { font-size: clamp(50px, 7vw, 96px); }
 @keyframes scan { 0% { left: 0; opacity: 1; } 92% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
 .sofa { position: absolute; left: 50%; bottom: 13%; width: 58%; transform: translateX(-50%); z-index: 4; }
 .sofa svg { width: 100%; display: block; }
-.chip { position: absolute; left: 18px; bottom: 18px; z-index: 5; padding: 8px 14px; border-radius: 999px; background: #0d0e11b3; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid var(--line); font-size: 13.5px; color: var(--text); }
+.chip { position: absolute; left: 18px; bottom: 18px; z-index: 5; padding: 8px 14px; border-radius: 999px; background: #0a1024b3; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid var(--line); font-size: 13.5px; color: var(--text); }
 .chip b { color: var(--gold-2); font-weight: 600; }
 
 /* полоса фактов */
@@ -108,13 +108,13 @@ h1 { font-size: clamp(50px, 7vw, 96px); }
 .stage[data-s="brick"] { background: repeating-linear-gradient(0deg, #3d2219 0 2px, transparent 2px 22px), repeating-linear-gradient(90deg, #3d2219 0 2px, transparent 2px 46px), #8a4a36; }
 .stage[data-s="concrete"] { background: linear-gradient(90deg, #0000 49.7%, #0003 50%, #0000 50.3%) 0 0 / 180px 100%, radial-gradient(#0000001a 1.5px, transparent 2px) 0 0 / 23px 19px, #7f817e; }
 .stage .light { position: absolute; inset: 0; z-index: 3; pointer-events: none; background: radial-gradient(70% 90% at 50% 0%, #fff4e01f, transparent 60%), radial-gradient(130% 120% at 50% 40%, transparent 45%, #000000a6 100%); }
-.floor { position: absolute; left: 0; right: 0; bottom: 0; height: 2.5%; background: #1a1714; z-index: 4; }
+.floor { position: absolute; left: 0; right: 0; bottom: 0; height: 2.5%; background: #0c1124; z-index: 4; }
 .print { position: absolute; cursor: grab; overflow: hidden; z-index: 2; background-size: cover; background-position: center; box-shadow: 0 0 0 1px #ffffff55, 0 18px 40px -16px #000; border-radius: 2px; }
 .print:active { cursor: grabbing; }
 .print svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
 .human { position: absolute; bottom: 2.5%; pointer-events: none; z-index: 4; }
 .human svg { display: block; height: 100%; width: auto; fill: #17161a; opacity: .82; }
-.tag { position: absolute; left: 12px; top: 12px; z-index: 5; background: #0d0e11c7; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); color: var(--text); font-size: 13px; font-weight: 500; padding: 5px 11px; border-radius: 999px; pointer-events: none; font-variant-numeric: tabular-nums; }
+.tag { position: absolute; left: 12px; top: 12px; z-index: 5; background: #0a1024c7; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); color: var(--text); font-size: 13px; font-weight: 500; padding: 5px 11px; border-radius: 999px; pointer-events: none; font-variant-numeric: tabular-nums; }
 .hint { margin: 12px 4px 0; font-size: 14px; color: var(--muted); }
 .arts { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; margin-top: 14px; }
 .art-btn { position: relative; aspect-ratio: 1; padding: 0; border: 0; border-radius: 12px; background: var(--bg-2); cursor: pointer; overflow: hidden; box-shadow: inset 0 0 0 1px var(--line); transition: transform .2s, box-shadow .2s; }
@@ -140,7 +140,7 @@ select:focus, input:focus, textarea:focus { border-color: var(--gold); outline: 
 .mosaic { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .tile { position: relative; display: block; min-height: 300px; padding: 0; border: 0; border-radius: var(--r); overflow: hidden; background: var(--card); text-align: left; color: var(--text); cursor: pointer; font: inherit; box-shadow: inset 0 0 0 1px var(--line); }
 .tile svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
-.tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 45%, #0d0e11e6); }
+.tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 45%, #0a1024e6); }
 .tile:hover svg { transform: scale(1.05); }
 .tile span { position: absolute; left: 22px; right: 22px; bottom: 20px; z-index: 1; display: flex; justify-content: space-between; align-items: end; gap: 12px; }
 .tile b { font: 500 30px/1.05 var(--serif); }
@@ -196,7 +196,7 @@ details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
 details p { padding-bottom: 22px; color: var(--muted); max-width: 62ch; }
 
 /* заявка */
-.order-card { position: relative; overflow: hidden; border-radius: 30px; border: 1px solid var(--line); background: radial-gradient(80% 120% at 0% 0%, #2a2318, transparent 60%), var(--card); padding: clamp(28px, 5vw, 64px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+.order-card { position: relative; overflow: hidden; border-radius: 30px; border: 1px solid var(--line); background: radial-gradient(80% 120% at 0% 0%, #1f2a52, transparent 60%), var(--card); padding: clamp(28px, 5vw, 64px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
 .order-card .lead { margin-top: 18px; }
 .contacts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
 .big-phone { display: inline-block; margin-top: 26px; font: 500 clamp(30px, 3.4vw, 40px)/1.1 var(--serif); text-decoration: none; color: var(--gold-2); }
