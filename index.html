@@ -6,220 +6,252 @@
 <title>Настенно</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="УФ-печать на стенах в Екатеринбурге и Свердловской области. Примерьте сюжет на свою стену и сразу увидите цену.">
+<meta name="theme-color" content="#0d0e11">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Oswald:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Golos+Text:wght@400;500;600&display=swap">
 <style>
-/* Layout concept: страница как лист на печатном столе — серая стена, метки приводки, шкала CMYK, размеры в метрах. Намеренно одна светлая тема. */
+/* Layout concept: тёмная галерея. Стена в луче света, изображение светится и подсвечивает комнату. Намеренно одна тёмная тема. */
 :root {
-  --wall: #dfe2e0;
-  --wall-2: #eef0ee;
-  --ink: #12151a;
-  --ink-2: #4b5159;
-  --line: #12151a33;
-  --c: #009fe3;
-  --m: #e6007e;
-  --y: #ffdd00;
-  --paper: #fbfcfb;
-  --disp: "Oswald", "Arial Narrow", Impact, sans-serif;
-  --body: "Golos Text", "Segoe UI", Arial, sans-serif;
-  --mono: "IBM Plex Mono", Consolas, monospace;
-  --gut-l: max(16px, env(safe-area-inset-left, 0px));
-  --gut-r: max(16px, env(safe-area-inset-right, 0px));
+  color-scheme: dark;
+  --bg: #0d0e11;
+  --bg-2: #13151a;
+  --card: #181b21;
+  --line: #ffffff17;
+  --line-2: #ffffff2b;
+  --text: #eeebe5;
+  --muted: #9d9a93;
+  --gold: #dcbc87;
+  --gold-2: #f3dcb1;
+  --on-gold: #1a1408;
+  --serif: "Cormorant Garamond", "Times New Roman", Georgia, serif;
+  --sans: "Golos Text", "Segoe UI", Arial, sans-serif;
+  --r: 22px;
+  --gut-l: max(20px, env(safe-area-inset-left, 0px));
+  --gut-r: max(20px, env(safe-area-inset-right, 0px));
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 76px; }
-body { margin: 0; background: var(--wall); color: var(--ink); font: 400 17px/1.55 var(--body); overflow-x: hidden; }
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--ink); }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 400 17px/1.6 var(--sans); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
 h1, h2, h3, p { margin: 0; }
-h1, h2 { font-family: var(--disp); font-weight: 700; text-transform: uppercase; line-height: 1.02; text-wrap: balance; }
-h2 { font-size: clamp(38px, 6vw, 72px); }
-h3 { font-size: 20px; line-height: 1.25; }
+h1, h2 { font-family: var(--serif); font-weight: 500; line-height: 1.02; letter-spacing: -.01em; text-wrap: balance; }
+h1 em, h2 em { font-style: italic; color: var(--gold-2); }
+h2 { font-size: clamp(40px, 5.4vw, 68px); }
+h3 { font-size: 19px; font-weight: 600; line-height: 1.3; }
 a { color: inherit; }
-:focus-visible { outline: 3px solid var(--m); outline-offset: 2px; }
-.wrap { max-width: 1240px; margin-inline: auto; padding-left: var(--gut-l); padding-right: var(--gut-r); }
-.band { padding-block: clamp(56px, 8vw, 104px); }
-.label { font: 500 13px/1.3 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
-.lead { font-size: 19px; max-width: 58ch; color: var(--ink-2); }
-.head { display: grid; gap: 14px; margin-bottom: clamp(28px, 4vw, 48px); }
-.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 12px 26px; border: 2px solid var(--ink); background: var(--ink); color: var(--paper); font: 700 16px/1.2 var(--body); text-decoration: none; cursor: pointer; transition: background .15s, border-color .15s, color .15s; }
-.btn:hover { background: var(--m); border-color: var(--m); color: #fff; }
-.btn.ghost { background: transparent; color: var(--ink); }
-.btn.ghost:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.wrap { max-width: 1220px; margin-inline: auto; padding-left: var(--gut-l); padding-right: var(--gut-r); }
+.band { padding-block: clamp(64px, 9vw, 120px); }
+.eyebrow { font-size: 12.5px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+.lead { font-size: 18.5px; max-width: 56ch; color: var(--muted); }
+.head { display: grid; gap: 16px; margin-bottom: clamp(32px, 4.5vw, 56px); }
+.head.center { justify-items: center; text-align: center; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; padding: 12px 28px; border-radius: 999px; border: 1px solid transparent; background: var(--gold); color: var(--on-gold); font: 600 16px/1.2 var(--sans); text-decoration: none; cursor: pointer; transition: background .2s, box-shadow .2s, transform .2s, border-color .2s; box-shadow: 0 10px 30px -10px #dcbc8780; }
+.btn:hover { background: var(--gold-2); transform: translateY(-1px); box-shadow: 0 14px 36px -10px #dcbc87a0; }
+.btn.ghost { background: transparent; color: var(--text); border-color: var(--line-2); box-shadow: none; }
+.btn.ghost:hover { border-color: var(--gold); color: var(--gold-2); }
 
 /* шапка */
-.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--ink); color: var(--paper); }
-.top .wrap { display: flex; align-items: center; gap: 28px; min-height: 60px; }
-.logo { font: 700 25px/1 var(--disp); letter-spacing: .03em; text-transform: uppercase; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
-.cmyk { display: inline-flex; }
-.cmyk i { width: 8px; height: 18px; display: block; }
-.cmyk i:nth-child(1) { background: var(--c); }
-.cmyk i:nth-child(2) { background: var(--m); }
-.cmyk i:nth-child(3) { background: var(--y); }
-.top nav { display: flex; gap: 24px; margin-left: auto; font-size: 15px; }
-.top nav a { text-decoration: none; opacity: .85; }
-.top nav a:hover { opacity: 1; color: var(--y); }
-.top .call { font: 500 15px var(--mono); white-space: nowrap; text-decoration: none; }
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: #0d0e11cc; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 32px; min-height: 68px; }
+.logo { font: 600 26px/1 var(--serif); letter-spacing: .02em; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+.logo i { width: 10px; height: 10px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 14px 2px #dcbc8799; }
+.top nav { display: flex; gap: 28px; margin-left: auto; font-size: 15px; color: var(--muted); }
+.top nav a { text-decoration: none; transition: color .2s; }
+.top nav a:hover { color: var(--text); }
+.top .call { font-weight: 500; font-size: 15px; white-space: nowrap; text-decoration: none; padding: 9px 18px; border: 1px solid var(--line-2); border-radius: 999px; transition: border-color .2s; }
+.top .call:hover { border-color: var(--gold); }
 
 /* первый экран */
-.hero { padding-block: clamp(32px, 5vw, 60px) clamp(40px, 6vw, 72px); }
-.hero-text { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 32px; align-items: end; margin-bottom: clamp(24px, 3.5vw, 40px); }
-h1 { font-size: clamp(50px, 9.2vw, 124px); line-height: .96; }
-h1 em { font-style: normal; color: var(--m); }
-.hero-side { display: grid; gap: 20px; min-width: 0; }
+.hero { position: relative; padding-block: clamp(44px, 6vw, 84px) clamp(56px, 7vw, 96px); overflow: hidden; }
+.hero::before { content: ""; position: absolute; inset: -20% -10% auto auto; width: 70vw; height: 70vw; max-width: 900px; max-height: 900px; background: radial-gradient(closest-side, #dcbc8714, transparent); pointer-events: none; }
+.hero-grid { position: relative; display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.25fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+h1 { font-size: clamp(50px, 7vw, 96px); }
+.hero-copy { display: grid; gap: 26px; min-width: 0; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
-.sheet { position: relative; padding: 26px 26px 34px; }
-.mark { position: absolute; width: 18px; height: 18px; }
-.mark::before, .mark::after { content: ""; position: absolute; background: var(--ink); }
-.mark::before { left: 8px; top: 0; width: 1.5px; height: 18px; }
-.mark::after { top: 8px; left: 0; height: 1.5px; width: 18px; }
-.mark.a { left: 0; top: 0; } .mark.b { right: 0; top: 0; } .mark.c { left: 0; bottom: 8px; } .mark.d { right: 0; bottom: 8px; }
-.bigwall { position: relative; aspect-ratio: 5 / 2; background: var(--wall-2); overflow: hidden; }
-.bigwall .ink, .bigwall .ink svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-.head-rig { position: absolute; top: 0; bottom: 0; left: 100%; width: 34px; margin-left: -17px; background: var(--ink); opacity: 0; display: grid; place-items: center; }
-.head-rig b { width: 12px; height: 34%; background: linear-gradient(var(--c) 0 33%, var(--m) 33% 66%, var(--y) 66%); }
-@media (prefers-reduced-motion: no-preference) {
-  .bigwall .ink { animation: reveal 5.5s cubic-bezier(.35,.05,.5,1) both; }
-  .head-rig { animation: travel 5.5s cubic-bezier(.35,.05,.5,1) both, off .5s 5.5s forwards; }
-}
+.facts { display: flex; flex-wrap: wrap; gap: 10px 22px; color: var(--muted); font-size: 14.5px; list-style: none; padding: 0; margin: 4px 0 0; }
+.facts li { display: flex; align-items: center; gap: 8px; }
+.facts li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+.room { position: relative; aspect-ratio: 4 / 3.1; border-radius: 28px; overflow: hidden; background: radial-gradient(120% 75% at 50% 0%, #3a352e 0%, #1e1c1a 45%, #121214 100%); box-shadow: 0 40px 80px -30px #000, inset 0 0 0 1px var(--line); isolation: isolate; }
+.room::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 17%; background: linear-gradient(#2a2420, #15120f); border-top: 1px solid #ffffff10; z-index: 3; }
+.spot { position: absolute; left: 50%; top: -10%; width: 90%; height: 85%; transform: translateX(-50%); background: radial-gradient(50% 50% at 50% 30%, #fff3dc2e, transparent 70%); z-index: 1; pointer-events: none; }
+.frame { position: absolute; left: 12%; right: 12%; top: 13%; bottom: 25%; z-index: 2; }
+.frame .glow { position: absolute; inset: -6%; filter: blur(40px) saturate(1.4); opacity: .55; transition: opacity 1s; }
+.frame .ink { position: absolute; inset: 0; border-radius: 6px; overflow: hidden; box-shadow: 0 20px 50px -18px #000c; }
+.frame svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.frame .layer { position: absolute; inset: 0; }
+.frame .layer.go { animation: reveal 2.6s cubic-bezier(.45,.05,.35,1) both; }
+.scan { position: absolute; top: -3%; bottom: -3%; width: 3px; left: 0; border-radius: 3px; background: var(--gold-2); box-shadow: 0 0 22px 6px #f3dcb199; opacity: 0; z-index: 4; }
+.scan.go { animation: scan 2.6s cubic-bezier(.45,.05,.35,1) both; }
 @keyframes reveal { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
-@keyframes travel { from { left: 0; opacity: 1; } to { left: 100%; opacity: 1; } }
-@keyframes off { from { opacity: 1; } to { opacity: 0; } }
-.sizes { position: absolute; left: 26px; right: 26px; bottom: 6px; display: flex; justify-content: space-between; gap: 12px; font: 500 12.5px/1.3 var(--mono); color: var(--ink-2); }
+@keyframes scan { 0% { left: 0; opacity: 1; } 92% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
+.sofa { position: absolute; left: 50%; bottom: 13%; width: 58%; transform: translateX(-50%); z-index: 4; }
+.sofa svg { width: 100%; display: block; }
+.chip { position: absolute; left: 18px; bottom: 18px; z-index: 5; padding: 8px 14px; border-radius: 999px; background: #0d0e11b3; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid var(--line); font-size: 13.5px; color: var(--text); }
+.chip b { color: var(--gold-2); font-weight: 600; }
+
+/* полоса фактов */
+.strip { border-block: 1px solid var(--line); }
+.strip .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.strip .wrap > div { padding: 28px 24px 28px 0; display: grid; gap: 4px; min-width: 0; }
+.strip .wrap > div + div { padding-left: 24px; border-left: 1px solid var(--line); }
+.strip b { font: 500 34px/1.1 var(--serif); color: var(--gold-2); }
+.strip span { color: var(--muted); font-size: 14.5px; }
 
 /* примерочная */
-.fit { background: var(--paper); }
-.fit-grid { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(300px, 1fr); gap: clamp(24px, 3vw, 44px); align-items: start; }
-.stage { position: relative; aspect-ratio: 2 / 1; overflow: hidden; touch-action: none; background-color: #d9d7d0; user-select: none; }
-.stage[data-s="smooth"] { background: #dcdad3; }
-.stage[data-s="plaster"] { background: radial-gradient(#0000000f 1px, transparent 1.5px) 0 0 / 7px 7px, #d6d3ca; }
-.stage[data-s="brick"] { background: repeating-linear-gradient(0deg, #6b3a2c 0 2px, transparent 2px 22px), repeating-linear-gradient(90deg, #6b3a2c 0 2px, transparent 2px 46px), #a85b43; }
-.stage[data-s="concrete"] { background: linear-gradient(90deg, #0000 49.8%, #0002 50%, #0000 50.2%) 0 0 / 180px 100%, #a9aba8; }
-.floor { position: absolute; left: 0; right: 0; bottom: 0; height: 2.5%; background: var(--ink); }
-.print { position: absolute; cursor: grab; outline: 1.5px dashed #fff; box-shadow: 0 0 0 1.5px #0005; overflow: hidden; background-size: cover; background-position: center; }
+.fit-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(310px, 1fr); gap: clamp(20px, 3vw, 36px); align-items: start; }
+.stage-wrap { min-width: 0; background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 14px; }
+.stage { position: relative; aspect-ratio: 2 / 1; overflow: hidden; touch-action: none; user-select: none; border-radius: 14px; background-color: #8d887f; isolation: isolate; }
+.stage[data-s="smooth"] { background: #a29c92; }
+.stage[data-s="plaster"] { background: radial-gradient(#0000001a 1px, transparent 1.6px) 0 0 / 6px 6px, radial-gradient(#ffffff14 1px, transparent 1.6px) 3px 3px / 7px 7px, #9d968a; }
+.stage[data-s="brick"] { background: repeating-linear-gradient(0deg, #3d2219 0 2px, transparent 2px 22px), repeating-linear-gradient(90deg, #3d2219 0 2px, transparent 2px 46px), #8a4a36; }
+.stage[data-s="concrete"] { background: linear-gradient(90deg, #0000 49.7%, #0003 50%, #0000 50.3%) 0 0 / 180px 100%, radial-gradient(#0000001a 1.5px, transparent 2px) 0 0 / 23px 19px, #7f817e; }
+.stage .light { position: absolute; inset: 0; z-index: 3; pointer-events: none; background: radial-gradient(70% 90% at 50% 0%, #fff4e01f, transparent 60%), radial-gradient(130% 120% at 50% 40%, transparent 45%, #000000a6 100%); }
+.floor { position: absolute; left: 0; right: 0; bottom: 0; height: 2.5%; background: #1a1714; z-index: 4; }
+.print { position: absolute; cursor: grab; overflow: hidden; z-index: 2; background-size: cover; background-position: center; box-shadow: 0 0 0 1px #ffffff55, 0 18px 40px -16px #000; border-radius: 2px; }
 .print:active { cursor: grabbing; }
 .print svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
-.human { position: absolute; bottom: 2.5%; pointer-events: none; }
-.human svg { display: block; height: 100%; width: auto; fill: var(--ink); }
-.tag { position: absolute; left: 10px; top: 10px; background: var(--ink); color: var(--paper); font: 500 13px var(--mono); padding: 4px 9px; pointer-events: none; }
-.hint { margin-top: 10px; font: 400 13.5px/1.4 var(--mono); color: var(--ink-2); }
-.arts { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; margin-top: 16px; }
-.art-btn { position: relative; aspect-ratio: 1; padding: 0; border: 3px solid transparent; background: var(--wall); cursor: pointer; overflow: hidden; }
+.human { position: absolute; bottom: 2.5%; pointer-events: none; z-index: 4; }
+.human svg { display: block; height: 100%; width: auto; fill: #17161a; opacity: .82; }
+.tag { position: absolute; left: 12px; top: 12px; z-index: 5; background: #0d0e11c7; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); color: var(--text); font-size: 13px; font-weight: 500; padding: 5px 11px; border-radius: 999px; pointer-events: none; font-variant-numeric: tabular-nums; }
+.hint { margin: 12px 4px 0; font-size: 14px; color: var(--muted); }
+.arts { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; margin-top: 14px; }
+.art-btn { position: relative; aspect-ratio: 1; padding: 0; border: 0; border-radius: 12px; background: var(--bg-2); cursor: pointer; overflow: hidden; box-shadow: inset 0 0 0 1px var(--line); transition: transform .2s, box-shadow .2s; }
+.art-btn:hover { transform: translateY(-2px); }
 .art-btn svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-.art-btn[aria-pressed="true"] { border-color: var(--m); }
-.art-btn.up { display: grid; place-items: center; font: 500 12px/1.2 var(--mono); color: var(--ink); background: var(--wall-2); border: 2px dashed var(--ink-2); }
-.panel { display: grid; gap: 20px; min-width: 0; }
-.field { display: grid; gap: 7px; }
-.field > label, .field > .flab { display: flex; justify-content: space-between; gap: 10px; font-size: 15px; font-weight: 500; }
-.field output { font: 500 15px var(--mono); }
-input[type=range] { width: 100%; accent-color: var(--m); height: 26px; margin: 0; }
-select, input[type=text], input[type=tel], textarea { width: 100%; min-height: 50px; padding: 11px 13px; border: 2px solid var(--ink); border-radius: 0; background: var(--paper); color: var(--ink); font: 400 16px var(--body); }
-.sum { background: var(--ink); color: var(--paper); padding: 22px; display: grid; gap: 8px; }
-.sum .label { color: #c5cad0; }
-.price { font: 700 clamp(46px, 5vw, 62px)/1 var(--disp); font-variant-numeric: tabular-nums; }
-.sum p { font: 400 14px/1.45 var(--mono); color: #dce0e4; }
-.sum .save { color: var(--y); }
-.sum .btn { background: var(--y); border-color: var(--y); color: var(--ink); margin-top: 8px; }
-.sum .btn:hover { background: var(--paper); border-color: var(--paper); color: var(--ink); }
+.art-btn[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--gold), 0 0 18px -2px #dcbc8799; }
+.art-btn.up { display: grid; place-items: center; font-size: 12px; line-height: 1.2; color: var(--muted); box-shadow: inset 0 0 0 1px var(--line-2); }
+.art-btn.up:hover { color: var(--gold-2); }
+.panel { display: grid; gap: 20px; min-width: 0; background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 24px; }
+.field { display: grid; gap: 8px; }
+.field > label { display: flex; justify-content: space-between; gap: 10px; font-size: 15px; color: var(--muted); }
+.field output { color: var(--text); font-weight: 500; font-variant-numeric: tabular-nums; }
+input[type=range] { width: 100%; accent-color: var(--gold); height: 26px; margin: 0; }
+select, input[type=text], input[type=tel], textarea { width: 100%; min-height: 50px; padding: 12px 14px; border: 1px solid var(--line-2); border-radius: 12px; background: var(--bg-2); color: var(--text); font: 400 16px var(--sans); transition: border-color .2s; }
+select:focus, input:focus, textarea:focus { border-color: var(--gold); outline: none; }
+.sum { border-top: 1px solid var(--line); padding-top: 20px; display: grid; gap: 8px; }
+.price { font: 500 clamp(48px, 5vw, 60px)/1 var(--serif); color: var(--gold-2); font-variant-numeric: tabular-nums; }
+.sum p { font-size: 14px; line-height: 1.5; color: var(--muted); }
+.sum .save { color: var(--gold); }
+.sum .btn { margin-top: 10px; }
 
 /* сюжеты */
-.mosaic { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.tile { position: relative; display: block; min-height: 270px; padding: 0; border: 0; overflow: hidden; background: var(--ink); text-align: left; color: var(--paper); cursor: pointer; font: inherit; }
-.tile svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; transition: transform .5s; }
-.tile:hover svg { transform: scale(1.04); }
-.tile span { position: absolute; left: 0; bottom: 0; background: var(--ink); padding: 9px 13px; display: grid; }
-.tile b { font-size: 16px; line-height: 1.25; }
-.tile small { font: 400 12.5px/1.3 var(--mono); color: #c5cad0; }
+.mosaic { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.tile { position: relative; display: block; min-height: 300px; padding: 0; border: 0; border-radius: var(--r); overflow: hidden; background: var(--card); text-align: left; color: var(--text); cursor: pointer; font: inherit; box-shadow: inset 0 0 0 1px var(--line); }
+.tile svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+.tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 45%, #0d0e11e6); }
+.tile:hover svg { transform: scale(1.05); }
+.tile span { position: absolute; left: 22px; right: 22px; bottom: 20px; z-index: 1; display: flex; justify-content: space-between; align-items: end; gap: 12px; }
+.tile b { font: 500 30px/1.05 var(--serif); }
+.tile small { font-size: 13.5px; color: var(--muted); }
+.tile i { font-style: normal; font-size: 13px; color: var(--gold-2); white-space: nowrap; opacity: 0; transform: translateY(4px); transition: opacity .25s, transform .25s; }
+.tile:hover i, .tile:focus-visible i { opacity: 1; transform: none; }
 .tile.w2 { grid-column: span 2; }
-.tile.w3 { grid-column: span 3; min-height: 230px; }
+.tile.w3 { grid-column: span 3; min-height: 250px; }
 
-.work { margin: 0; display: grid; gap: 8px; min-width: 0; }
-.work img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
-.work figcaption { font: 400 14px/1.35 var(--mono); }
-.rev { display: grid; gap: 12px; align-content: space-between; background: var(--paper); padding: 22px; text-decoration: none; min-width: 0; }
-.contacts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
-.contacts .btn { border-color: #fff; color: #fff; }
+/* работы и отзывы */
+.work { margin: 0; display: grid; gap: 10px; min-width: 0; }
+.work img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; border-radius: var(--r); }
+.work figcaption { font-size: 14px; color: var(--muted); }
+.rev { display: grid; gap: 14px; align-content: space-between; background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 26px; text-decoration: none; min-width: 0; }
+.rev p { font: 500 21px/1.4 var(--serif); }
+.rev b { font-size: 14px; color: var(--gold); font-weight: 500; }
 
 /* как работаем */
-.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 2px solid var(--ink); list-style: none; margin: 0; padding: 0; }
-.steps li { padding: 20px 22px 8px 0; display: grid; gap: 10px; align-content: start; min-width: 0; }
-.steps .n { font: 700 54px/1 var(--disp); }
-.steps li:nth-child(1) .n { color: var(--c); }
-.steps li:nth-child(2) .n { color: var(--m); }
-.steps li:nth-child(3) .n { color: #c9a800; }
-.steps p { color: var(--ink-2); font-size: 16px; }
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; list-style: none; margin: 0; padding: 0; counter-reset: s; }
+.steps li { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 26px 24px; display: grid; gap: 10px; align-content: start; min-width: 0; counter-increment: s; }
+.steps li::before { content: counter(s); font: 500 46px/1 var(--serif); color: var(--gold); }
+.steps p { color: var(--muted); font-size: 15.5px; }
 
 /* сравнение */
-.cmp { background: var(--ink); color: var(--paper); }
-.cmp .label, .cmp .lead { color: #c5cad0; }
-.tbl { overflow-x: auto; }
-table { border-collapse: collapse; width: 100%; min-width: 660px; font-size: 16px; }
-th, td { text-align: left; padding: 15px 18px 15px 0; border-bottom: 1px solid #ffffff33; vertical-align: top; }
-thead th { font: 500 13px var(--mono); text-transform: uppercase; letter-spacing: .05em; color: #c5cad0; }
-thead th:nth-child(2) { color: var(--y); }
-tbody th { font-weight: 500; color: #c5cad0; }
-tbody td:nth-child(2) { font-weight: 700; }
+.tbl { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 8px 26px; }
+table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 16px; }
+th, td { text-align: left; padding: 17px 18px 17px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child th, tr:last-child td { border-bottom: 0; }
+thead th { font-size: 12.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); }
+thead th:nth-child(2) { color: var(--gold); }
+tbody th { font-weight: 400; color: var(--muted); }
+tbody td:nth-child(2) { color: var(--gold-2); font-weight: 500; }
 
-/* тарифы */
-.scale { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 2px solid var(--ink); background: var(--paper); }
-.tier { padding: 20px 18px; display: grid; gap: 6px; border-right: 2px solid var(--ink); min-width: 0; transition: background .2s, color .2s; }
-.tier:last-child { border-right: 0; }
-.tier .a { font: 500 14px var(--mono); }
-.tier .r { font: 700 40px/1.05 var(--disp); font-variant-numeric: tabular-nums; }
-.tier .u { font: 400 13px var(--mono); }
-.tier.on { background: var(--y); }
-.note { margin-top: 16px; color: var(--ink-2); font-size: 16px; max-width: 76ch; }
+/* цены */
+.scale { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.tier { padding: 26px 24px; display: grid; gap: 6px; border-radius: var(--r); background: var(--card); border: 1px solid var(--line); min-width: 0; transition: border-color .3s, box-shadow .3s; }
+.tier .a { font-size: 14.5px; color: var(--muted); }
+.tier .r { font: 500 44px/1.05 var(--serif); font-variant-numeric: tabular-nums; }
+.tier .u { font-size: 13.5px; color: var(--muted); }
+.tier.on { border-color: var(--gold); box-shadow: 0 0 40px -12px #dcbc8766, inset 0 0 0 1px var(--gold); }
+.tier.on .r { color: var(--gold-2); }
+.tier.on .a::after { content: " · ваш расчёт"; color: var(--gold); }
+.note { margin-top: 20px; color: var(--muted); font-size: 15.5px; max-width: 80ch; }
 
 /* вопросы */
-.qa { background: var(--paper); }
-.qa-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 32px; }
-details { border-bottom: 2px solid var(--ink); }
-details:first-child { border-top: 2px solid var(--ink); }
-summary { cursor: pointer; padding: 18px 0; font-size: 19px; font-weight: 500; }
-details p { padding-bottom: 20px; color: var(--ink-2); max-width: 62ch; }
+.qa-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr); gap: 40px; }
+details { border-bottom: 1px solid var(--line); }
+details:first-child { border-top: 1px solid var(--line); }
+summary { cursor: pointer; padding: 22px 40px 22px 0; font-size: 19px; font-weight: 500; list-style: none; position: relative; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font: 400 28px/1 var(--serif); color: var(--gold); transition: transform .25s; }
+details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+details p { padding-bottom: 22px; color: var(--muted); max-width: 62ch; }
 
 /* заявка */
-.lead-form { background: var(--m); color: #fff; }
-.form-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
-.lead-form .lead { color: #fff; margin-top: 16px; }
-form { display: grid; gap: 14px; background: var(--paper); color: var(--ink); padding: 24px; min-width: 0; }
-form .field > label { font-size: 15px; }
-.check { display: flex; gap: 10px; font-size: 14px; line-height: 1.4; align-items: flex-start; }
-.check input { width: 20px; height: 20px; margin: 1px 0 0; flex: none; accent-color: var(--m); }
-.done { font: 400 14px/1.5 var(--mono); background: var(--wall); padding: 13px; white-space: pre-line; }
+.order-card { position: relative; overflow: hidden; border-radius: 30px; border: 1px solid var(--line); background: radial-gradient(80% 120% at 0% 0%, #2a2318, transparent 60%), var(--card); padding: clamp(28px, 5vw, 64px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+.order-card .lead { margin-top: 18px; }
+.contacts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.big-phone { display: inline-block; margin-top: 26px; font: 500 clamp(30px, 3.4vw, 40px)/1.1 var(--serif); text-decoration: none; color: var(--gold-2); }
+form { display: grid; gap: 16px; min-width: 0; }
+form .field > label { color: var(--muted); }
+.check { display: flex; gap: 10px; font-size: 14px; line-height: 1.45; align-items: flex-start; color: var(--muted); }
+.check input { width: 20px; height: 20px; margin: 1px 0 0; flex: none; accent-color: var(--gold); }
+.done { font-size: 14.5px; line-height: 1.55; background: var(--bg-2); border: 1px solid var(--line); border-radius: 14px; padding: 16px; white-space: pre-line; }
 
-footer { background: var(--ink); color: #c5cad0; padding-block: 32px; font-size: 14.5px; }
+footer { border-top: 1px solid var(--line); color: var(--muted); padding-block: 36px; font-size: 14.5px; }
 footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px 40px; align-items: center; }
-footer .logo { color: var(--paper); }
+footer .logo { color: var(--text); font-size: 22px; }
 
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
 @media (max-width: 980px) {
   .top nav { display: none; }
   .top .call { margin-left: auto; }
-  .hero-text, .fit-grid, .qa-grid, .form-grid { grid-template-columns: minmax(0, 1fr); }
-  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .scale { grid-template-columns: minmax(0, 1fr); }
-  .tier { grid-template-columns: 1fr auto; align-items: baseline; border-right: 0; border-bottom: 2px solid var(--ink); }
-  .tier:last-child { border-bottom: 0; }
-  .tier .u { grid-column: 2; text-align: right; }
+  .hero-grid, .fit-grid, .qa-grid, .order-card { grid-template-columns: minmax(0, 1fr); }
+  .strip .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .strip .wrap > div:nth-child(3) { padding-left: 0; border-left: 0; }
+  .strip .wrap > div:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .steps, .scale { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 640px) {
-  .sheet { padding: 20px 20px 84px; }
-  .sizes { left: 20px; right: 20px; flex-direction: column; gap: 0; bottom: 4px; }
-  .bigwall { aspect-ratio: 3 / 2; }
+  body { font-size: 16px; }
+  .top .wrap { gap: 12px; }
+  .top .call { font-size: 13.5px; padding: 8px 13px; }
+  .logo { font-size: 23px; }
+  .room { aspect-ratio: 4 / 3.6; border-radius: 22px; }
+  .frame { left: 9%; right: 9%; }
+  .strip .wrap > div { padding: 20px 14px 20px 0; }
+  .strip .wrap > div + div { padding-left: 14px; }
+  .strip .wrap > div:nth-child(3) { padding-left: 0; }
+  .strip b { font-size: 28px; }
   .mosaic { grid-template-columns: minmax(0, 1fr); }
   .tile.w2, .tile.w3 { grid-column: auto; }
-  .tile, .tile.w3 { min-height: 210px; }
+  .tile, .tile.w3 { min-height: 230px; }
+  .tile i { opacity: 1; transform: none; }
   .stage { aspect-ratio: 3 / 2; }
+  .stage-wrap { padding: 10px; }
   .arts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .steps { grid-template-columns: minmax(0, 1fr); }
-  .top .call { font-size: 13px; }
+  .steps, .scale { grid-template-columns: minmax(0, 1fr); }
+  .tier { grid-template-columns: 1fr auto; align-items: baseline; }
+  .tier .r { grid-row: span 2; font-size: 38px; }
+  .panel { padding: 20px; }
+  .tbl { padding: 4px 18px; }
 }
 </style>
 </head>
 <body>
 <header class="top">
   <div class="wrap">
-    <a class="logo" href="#top"><span class="cmyk"><i></i><i></i><i></i></span>Настенно</a>
+    <a class="logo" href="#top"><i></i>Настенно</a>
     <nav aria-label="Разделы">
       <a href="#fit">Примерочная</a>
       <a href="#ideas">Сюжеты</a>
@@ -233,70 +265,88 @@ footer .logo { color: var(--paper); }
 
 <main id="top">
   <section class="hero">
-    <div class="wrap">
-      <div class="hero-text">
-        <h1>Напечатаем <em>прямо на&nbsp;стене</em></h1>
-        <div class="hero-side">
-          <p class="lead">Привозим УФ-принтер на объект в Екатеринбурге и Свердловской области и переносим любое изображение на стену. Без обоев, краски и пыли. Цену видите сразу, ещё до звонка.</p>
-          <div class="hero-actions">
-            <a class="btn" href="#fit">Примерить на стену</a>
-            <a class="btn ghost" href="#price">Смотреть цены</a>
-          </div>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">УФ-печать на стенах · Екатеринбург</span>
+        <h1>Стены, которые <em>запоминают</em></h1>
+        <p class="lead">Привозим принтер на объект в Екатеринбурге и Свердловской области и переносим любое изображение прямо на стену. Без обоев, краски и пыли. Цену видите сразу, ещё до звонка.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#fit">Примерить на свою стену</a>
+          <a class="btn ghost" href="#price">Цены</a>
         </div>
+        <ul class="facts">
+          <li>Гарантия 5 лет на цвет</li>
+          <li>Кирпич, бетон, штукатурка</li>
+          <li>Работаем по договору</li>
+        </ul>
       </div>
-      <div class="sheet">
-        <i class="mark a"></i><i class="mark b"></i><i class="mark c"></i><i class="mark d"></i>
-        <div class="bigwall" role="img" aria-label="Принтер печатает на стене горный пейзаж">
+      <div class="room" role="img" aria-label="Изображение, напечатанное на стене гостиной">
+        <div class="spot"></div>
+        <div class="frame">
+          <div class="glow" id="heroGlow"></div>
           <div class="ink" id="heroArt"></div>
-          <div class="head-rig"><b></b></div>
+          <div class="scan" id="heroScan"></div>
         </div>
-        <div class="sizes"><span>5,0 × 2,0 м = 10 м²</span><span>Гарантия 5 лет на цвет в помещении</span><span id="heroPrice"></span></div>
+        <div class="sofa" aria-hidden="true">
+          <svg viewBox="0 0 400 90"><defs><linearGradient id="sofaG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b3631"/><stop offset="1" stop-color="#1f1c19"/></linearGradient></defs><rect x="22" y="8" width="356" height="46" rx="14" fill="url(#sofaG)"/><rect x="0" y="34" width="56" height="48" rx="14" fill="#2b2723"/><rect x="344" y="34" width="56" height="48" rx="14" fill="#2b2723"/><rect x="40" y="46" width="320" height="34" rx="10" fill="#332e2a"/><rect x="200" y="47" width="1.5" height="32" fill="#1d1a17"/><rect x="40" y="80" width="8" height="10" fill="#111"/><rect x="352" y="80" width="8" height="10" fill="#111"/></svg>
+        </div>
+        <div class="chip" id="heroChip"></div>
       </div>
     </div>
   </section>
 
-  <section class="band fit" id="fit">
+  <section class="strip" aria-label="Коротко о главном">
+    <div class="wrap">
+      <div><b>5 лет</b><span>гарантия на цвет в помещении</span></div>
+      <div><b id="stripPrice"></b><span>за м² при площади от 100 м²</span></div>
+      <div><b>0 часов</b><span>на высыхание, стеной пользуются сразу</span></div>
+      <div><b>1 день</b><span>обычный срок на стену в квартире</span></div>
+    </div>
+  </section>
+
+  <section class="band" id="fit">
     <div class="wrap">
       <div class="head">
-        <span class="label">Примерочная</span>
-        <h2>Сначала на экране, потом на стене</h2>
-        <p class="lead">Выберите сюжет или загрузите своё фото, задайте размер и передвиньте печать пальцем. Фото остаётся на вашем устройстве.</p>
+        <span class="eyebrow">Примерочная</span>
+        <h2>Сначала на экране, <em>потом</em> на стене</h2>
+        <p class="lead">Выберите сюжет или загрузите своё фото, задайте размер и передвиньте изображение пальцем. Фото остаётся на вашем устройстве.</p>
       </div>
       <div class="fit-grid">
-        <div style="min-width:0">
+        <div class="stage-wrap">
           <div class="stage" id="stage" data-s="smooth">
             <div class="print" id="print" role="img" aria-label="Изображение на стене"></div>
             <div class="human" id="human" aria-hidden="true"><svg viewBox="0 0 40 120"><circle cx="20" cy="11" r="10"/><path d="M8 25h24l5 44h-7l-2-22-1 73h-9l-2-48-2 48h-9l-1-73-2 22H3z"/></svg></div>
+            <div class="light"></div>
             <div class="floor"></div>
             <div class="tag" id="tag"></div>
           </div>
-          <p class="hint">Силуэт человека 175 см показывает масштаб.</p>
+          <p class="hint">Силуэт человека ростом 175 см показывает масштаб.</p>
           <div class="arts" id="arts"></div>
           <input id="file" type="file" accept="image/*" hidden>
         </div>
         <div class="panel">
-          <div class="field"><label for="w">Ширина печати <output id="wo"></output></label><input id="w" type="range" min="1" max="12" step="0.1" value="4.5"></div>
-          <div class="field"><label for="h">Высота печати <output id="ho"></output></label><input id="h" type="range" min="0.5" max="4" step="0.1" value="2.4"></div>
+          <div class="field"><label for="w">Ширина <output id="wo"></output></label><input id="w" type="range" min="1" max="12" step="0.1" value="4.5"></div>
+          <div class="field"><label for="h">Высота <output id="ho"></output></label><input id="h" type="range" min="0.5" max="4" step="0.1" value="2.4"></div>
           <div class="field"><label for="n">Сколько таких стен <output id="no"></output></label><input id="n" type="range" min="1" max="12" step="1" value="1"></div>
           <div class="field"><label for="surf">Поверхность</label><select id="surf"></select></div>
           <div class="field"><label for="des">Макет</label><select id="des"></select></div>
           <div class="sum" aria-live="polite">
-            <span class="label">Предварительная цена</span>
+            <span class="eyebrow">Предварительная цена</span>
             <div class="price" id="total"></div>
             <p id="detail"></p>
             <p class="save" id="save" hidden></p>
-            <a class="btn" href="#order">Отправить этот расчёт</a>
+            <a class="btn" href="#order">Отправить расчёт</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="band" id="ideas">
+  <section class="band" id="ideas" style="padding-top:0">
     <div class="wrap">
       <div class="head">
-        <span class="label">Сюжеты для примерки</span>
-        <h2>Что можно напечатать</h2>
+        <span class="eyebrow">Сюжеты</span>
+        <h2>Что можно <em>напечатать</em></h2>
         <p class="lead">Это эскизы для примера. Нажмите на любой, и он откроется в примерочной.</p>
       </div>
       <div class="mosaic" id="mosaic"></div>
@@ -305,33 +355,33 @@ footer .logo { color: var(--paper); }
 
   <section class="band" id="works" style="padding-top:0" hidden>
     <div class="wrap">
-      <div class="head"><span class="label">Портфолио</span><h2>Наши работы</h2></div>
+      <div class="head"><span class="eyebrow">Портфолио</span><h2>Наши <em>работы</em></h2></div>
       <div class="mosaic" id="worksGrid"></div>
     </div>
   </section>
 
   <section class="band" id="reviews" style="padding-top:0" hidden>
     <div class="wrap">
-      <div class="head"><span class="label">Клиенты</span><h2>Отзывы</h2></div>
+      <div class="head"><span class="eyebrow">Клиенты</span><h2>Отзывы</h2></div>
       <div class="mosaic" id="reviewsGrid"></div>
     </div>
   </section>
 
   <section class="band" id="how" style="padding-top:0">
     <div class="wrap">
-      <div class="head"><span class="label">От заявки до готовой стены</span><h2>Как работаем</h2></div>
+      <div class="head"><span class="eyebrow">От заявки до готовой стены</span><h2>Как <em>работаем</em></h2></div>
       <ol class="steps">
-        <li><span class="n">1</span><h3>Считаем</h3><p>Присылаете фото стены и размеры. Подтверждаем цену и условия в договоре.</p></li>
-        <li><span class="n">2</span><h3>Готовим макет</h3><p>Берём ваш файл или рисуем новый. Показываем, как он ляжет на вашу стену.</p></li>
-        <li><span class="n">3</span><h3>Приезжаем</h3><p>В удобный день ставим принтер, закрываем пол и мебель, калибруем цвет.</p></li>
-        <li><span class="n">4</span><h3>Печатаем</h3><p>Чернила застывают под УФ-лампой сразу. Убираем оборудование, и стеной можно пользоваться.</p></li>
+        <li><h3>Считаем</h3><p>Присылаете фото стены и размеры. Подтверждаем цену и условия в договоре.</p></li>
+        <li><h3>Готовим макет</h3><p>Берём ваш файл или рисуем новый. Показываем, как он ляжет на вашу стену.</p></li>
+        <li><h3>Приезжаем</h3><p>В удобный день ставим принтер, закрываем пол и мебель, настраиваем цвет.</p></li>
+        <li><h3>Печатаем</h3><p>Чернила застывают под УФ-лампой сразу. Убираем оборудование, и стеной можно пользоваться.</p></li>
       </ol>
     </div>
   </section>
 
-  <section class="band cmp">
+  <section class="band" style="padding-top:0">
     <div class="wrap">
-      <div class="head"><span class="label">С чем сравнивают</span><h2>Печать, роспись или обои</h2></div>
+      <div class="head"><span class="eyebrow">С чем сравнивают</span><h2>Печать, роспись <em>или</em> обои</h2></div>
       <div class="tbl">
         <table>
           <thead><tr><th>&nbsp;</th><th>Печать на стене</th><th>Ручная роспись</th><th>Фотообои</th></tr></thead>
@@ -340,28 +390,28 @@ footer .logo { color: var(--paper); }
             <tr><th scope="row">Точность</th><td>Как в файле</td><td>Авторская манера</td><td>Как в файле, есть стыки</td></tr>
             <tr><th scope="row">Грязь на объекте</th><td>Минимум</td><td>Краска и запах</td><td>Клей, обрезки</td></tr>
             <tr><th scope="row">Кирпич и бетон</th><td>Да</td><td>Да</td><td>Нужно выравнивать</td></tr>
-            <tr><th scope="row">Когда лучше другое</th><td>Нужна фактура мазка</td><td>Важна рука художника</td><td>Съёмное решение на время</td></tr>
+            <tr><th scope="row">Когда лучше другое</th><td>Нужна фактура мазка</td><td>Важна рука художника</td><td>Нужно съёмное решение</td></tr>
           </tbody>
         </table>
       </div>
     </div>
   </section>
 
-  <section class="band" id="price">
+  <section class="band" id="price" style="padding-top:0">
     <div class="wrap">
       <div class="head">
-        <span class="label">Цена за м² без пропусков</span>
-        <h2>Чем больше стена, тем ниже ставка</h2>
-        <p class="lead">Любая площадь попадает в один из диапазонов. Жёлтым отмечен ваш расчёт из примерочной.</p>
+        <span class="eyebrow">Цена за м²</span>
+        <h2>Чем больше стена, <em>тем ниже</em> ставка</h2>
+        <p class="lead">Любая площадь попадает в один из диапазонов. Подсвечен ваш расчёт из примерочной.</p>
       </div>
       <div class="scale" id="scale"></div>
       <p class="note" id="priceNote"></p>
     </div>
   </section>
 
-  <section class="band qa" id="faq">
+  <section class="band" id="faq" style="padding-top:0">
     <div class="wrap qa-grid">
-      <div class="head"><span class="label">Перед заказом</span><h2>Вопросы</h2></div>
+      <div class="head"><span class="eyebrow">Перед заказом</span><h2>Вопросы</h2></div>
       <div>
         <details open><summary>На каких стенах можно печатать?</summary><p>На окрашенных, оштукатуренных, бетонных и кирпичных, а также на стекле, дереве и плитке. Для глубокого рельефа сначала делаем пробу на небольшом участке.</p></details>
         <details><summary>Какая гарантия?</summary><p>Даём гарантию 5 лет на сохранение цвета изображения внутри помещения. Условия закрепляем в договоре.</p></details>
@@ -372,30 +422,34 @@ footer .logo { color: var(--paper); }
     </div>
   </section>
 
-  <section class="band lead-form" id="order">
-    <div class="wrap form-grid">
-      <div>
-        <h2>Пришлите стену, мы посчитаем точно</h2>
-        <p class="lead">Ваш расчёт из примерочной уже добавлен в заявку.</p>
-        <div class="contacts" id="contacts"></div>
+  <section class="band" id="order" style="padding-top:0">
+    <div class="wrap">
+      <div class="order-card">
+        <div>
+          <span class="eyebrow">Заявка</span>
+          <h2 style="margin-top:14px">Пришлите стену, <em>посчитаем</em> точно</h2>
+          <p class="lead">Ваш расчёт из примерочной уже добавлен в заявку. Можно сразу позвонить или написать.</p>
+          <a class="big-phone" data-phone-big href="tel:+79221717929">+7 (922) 171-79-29</a>
+          <div class="contacts" id="contacts"></div>
+        </div>
+        <form id="form">
+          <div class="field"><label for="fn">Имя</label><input id="fn" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="fp">Телефон</label><input id="fp" type="tel" autocomplete="tel" inputmode="tel" required></div>
+          <div class="field"><label for="fc">Расчёт</label><textarea id="fc" rows="3"></textarea></div>
+          <label class="check"><input id="fa" type="checkbox" required><span>Даю согласие на обработку персональных данных</span></label>
+          <button class="btn" type="submit">Отправить заявку</button>
+          <div class="done" id="done" hidden></div>
+        </form>
       </div>
-      <form id="form">
-        <div class="field"><label for="fn">Имя</label><input id="fn" type="text" autocomplete="name" required></div>
-        <div class="field"><label for="fp">Телефон</label><input id="fp" type="tel" autocomplete="tel" inputmode="tel" required></div>
-        <div class="field"><label for="fc">Расчёт</label><textarea id="fc" rows="3"></textarea></div>
-        <label class="check"><input id="fa" type="checkbox" required><span>Даю согласие на обработку персональных данных</span></label>
-        <button class="btn" type="submit">Отправить заявку</button>
-        <div class="done" id="done" hidden></div>
-      </form>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <span class="logo"><span class="cmyk"><i></i><i></i><i></i></span>Настенно</span>
-    <span data-phone-text>+7 (922) 171-79-29</span>
+    <span class="logo"><i></i>Настенно</span>
     <span>Екатеринбург и Свердловская область</span>
+    <span data-phone-text>+7 (922) 171-79-29</span>
     <span>Реквизиты компании будут здесь</span>
   </div>
 </footer>
@@ -434,23 +488,84 @@ const CONFIG = {
   metersPerHour: 4
 };
 
-/* Сюжеты рисуются кодом, поэтому чужих изображений на сайте нет */
-const S = b => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${b}</svg>`;
+/* Сюжеты рисуются кодом: чужих изображений на сайте нет */
+let uid = 0;
+const S = (defs, body) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs>${defs}</defs>${body}</svg>`;
+const lin = (id, stops, v = true) => `<linearGradient id="${id}" x1="0" y1="0" x2="${v ? 0 : 1}" y2="${v ? 1 : 0}">${stops.map((c, i) => `<stop offset="${i / (stops.length - 1)}" stop-color="${c}"/>`).join("")}</linearGradient>`;
+const rad = (id, stops) => `<radialGradient id="${id}">${stops.map(([o, c, a = 1]) => `<stop offset="${o}" stop-color="${c}" stop-opacity="${a}"/>`).join("")}</radialGradient>`;
 function ridge(y, amp, seed, fill) {
   let d = "M0 300L0 " + y;
-  for (let x = 0; x <= 600; x += 25) {
-    const v = Math.sin(x * .017 + seed) * amp + Math.sin(x * .049 + seed * 2.3) * amp * .45 + (x % 50 ? amp * .25 : 0);
+  for (let x = 0; x <= 600; x += 12) {
+    const v = Math.sin(x * .013 + seed) * amp + Math.sin(x * .041 + seed * 2.3) * amp * .5 + Math.sin(x * .11 + seed) * amp * .12;
     d += `L${x} ${(y + v).toFixed(1)}`;
   }
   return `<path d="${d}L600 300Z" fill="${fill}"/>`;
 }
 const ARTS = {
-  mountains: { name: "Горы", place: "Гостиная, отель", svg: () => S(`<rect width="600" height="300" fill="#ffb347"/><rect width="600" height="120" fill="#ff6f59"/><circle cx="420" cy="118" r="58" fill="#ffdd00"/>` + ridge(135, 26, 1, "#c8326b") + ridge(172, 30, 3, "#7b2a7f") + ridge(212, 24, 5, "#33266b") + ridge(255, 16, 7, "#12151a")) },
-  waves: { name: "Волна", place: "Офис, спа", svg: () => { let o = `<rect width="600" height="300" fill="#f3efe0"/>`; const c = ["#009fe3","#0b5fa5","#12305e","#00b5b8","#9fdcec"]; for (let i = 13; i >= 0; i--) o += `<circle cx="${i % 2 ? 150 : 450}" cy="330" r="${50 + i * 34}" fill="${c[i % 5]}"/>`; return S(o); } },
-  space: { name: "Космос", place: "Детская, школа", svg: () => { let o = `<rect width="600" height="300" fill="#141238"/>`; for (let i = 0; i < 90; i++) o += `<circle cx="${(i * 137.5) % 600}" cy="${(i * 71.3) % 300}" r="${1 + i % 3 * .7}" fill="#fff"/>`; o += `<circle cx="180" cy="160" r="88" fill="#e6007e"/><path d="M95 145a90 90 0 0 1 170-6c-50 22-115 26-170 6z" fill="#ff7ab8"/><ellipse cx="180" cy="160" rx="150" ry="24" fill="none" stroke="#ffdd00" stroke-width="9" transform="rotate(-16 180 160)"/><circle cx="470" cy="80" r="36" fill="#00b5b8"/><circle cx="520" cy="225" r="20" fill="#ffdd00"/>`; return S(o); } },
-  forest: { name: "Лес", place: "Кафе, клиника", svg: () => { let o = `<rect width="600" height="300" fill="#d7ecd0"/>`; const c = ["#7fb77e","#3f8f63","#1e6a57","#0f4040"]; for (let r = 0; r < 4; r++) for (let i = -1; i < 14; i++) { const x = i * 48 + r * 19, b = 150 + r * 50, h = 130 + (i * 7 + r * 11) % 50; o += `<path d="M${x} ${b - h}L${x + 42} ${b + 50}L${x - 42} ${b + 50}Z" fill="${c[r]}"/>`; } return S(o); } },
-  bauhaus: { name: "Геометрия", place: "Коворкинг, шоурум", svg: () => { const c = ["#e6007e","#009fe3","#ffdd00","#12151a","#f3efe0"]; let o = `<rect width="600" height="300" fill="#f3efe0"/>`; for (let y = 0; y < 3; y++) for (let x = 0; x < 6; x++) { const a = c[(x * 2 + y) % 5], b = c[(x + y * 3 + 2) % 5], k = (x * 3 + y * 2) % 4, X = x * 100, Y = y * 100; o += `<rect x="${X}" y="${Y}" width="100" height="100" fill="${a}"/>`; o += k == 0 ? `<circle cx="${X + 50}" cy="${Y + 50}" r="40" fill="${b}"/>` : k == 1 ? `<path d="M${X} ${Y}h100v100z" fill="${b}"/>` : k == 2 ? `<path d="M${X} ${Y + 100}a100 100 0 0 1 100-100v100z" fill="${b}"/>` : `<rect x="${X + 25}" y="${Y}" width="50" height="100" fill="${b}"/>`; } return S(o); } },
-  flowers: { name: "Цветы", place: "Салон, ресторан", svg: () => { let o = `<rect width="600" height="300" fill="#12305e"/>`; [[130,140,1.2,"#e6007e"],[320,185,1.55,"#ffb347"],[505,105,1.1,"#f3a5c6"],[30,270,.8,"#ffdd00"],[590,280,.9,"#00b5b8"]].forEach(([x,y,s,c]) => { for (let a = 0; a < 360; a += 40) o += `<ellipse cx="${x}" cy="${y - 48 * s}" rx="${19 * s}" ry="${48 * s}" fill="${c}" opacity=".88" transform="rotate(${a} ${x} ${y})"/>`; o += `<circle cx="${x}" cy="${y}" r="${17 * s}" fill="#ffdd00"/>`; }); return S(o); } }
+  mountains: { name: "Горы на закате", place: "Гостиная, отель", svg() {
+    const p = "m" + (++uid);
+    const defs = lin(p + "s", ["#1d1240", "#6b2d6e", "#e0715a", "#f6b56b"]) + rad(p + "g", [[0, "#fff1c9"], [.35, "#ffd27a", .9], [1, "#ff9a5a", 0]])
+      + lin(p + "1", ["#b2476e", "#7d2f62"]) + lin(p + "2", ["#6b2a63", "#43204f"]) + lin(p + "3", ["#3a1d48", "#24153a"]) + lin(p + "4", ["#1b1129", "#0e0a16"]) + lin(p + "h", ["#f6b56b00", "#f6b56b40"]);
+    return S(defs, `<rect width="600" height="300" fill="url(#${p}s)"/><circle cx="410" cy="150" r="120" fill="url(#${p}g)"/><circle cx="410" cy="150" r="44" fill="#fff3d6"/>` + ridge(150, 24, 1, `url(#${p}1)`) + `<rect y="120" width="600" height="80" fill="url(#${p}h)"/>` + ridge(185, 28, 3, `url(#${p}2)`) + ridge(220, 22, 5, `url(#${p}3)`) + ridge(258, 15, 7, `url(#${p}4)`));
+  } },
+  space: { name: "Космос", place: "Детская, школа", svg() {
+    const p = "s" + (++uid);
+    const defs = rad(p + "b", [[0, "#2c1d63"], [.6, "#130d2e"], [1, "#05040c"]]) + `<filter id="${p}f" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="28"/></filter>`
+      + `<radialGradient id="${p}p" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#ffb3cf"/><stop offset=".5" stop-color="#d2397f"/><stop offset="1" stop-color="#4a0f35"/></radialGradient>` + lin(p + "r", ["#ffe2a8", "#c98a3a"], false);
+    let st = ""; for (let i = 0; i < 120; i++) st += `<circle cx="${(i * 137.5) % 600}" cy="${(i * 71.3 + i * i * .07) % 300}" r="${(.4 + (i % 4) * .35).toFixed(2)}" fill="#fff" opacity="${(.4 + (i % 5) * .12).toFixed(2)}"/>`;
+    return S(defs, `<rect width="600" height="300" fill="url(#${p}b)"/><g filter="url(#${p}f)" opacity=".75"><ellipse cx="430" cy="110" rx="150" ry="70" fill="#e6007e"/><ellipse cx="500" cy="170" rx="110" ry="60" fill="#2aa7d8"/><ellipse cx="120" cy="240" rx="120" ry="50" fill="#6c3bd1"/></g>${st}<ellipse cx="200" cy="160" rx="160" ry="26" fill="none" stroke="url(#${p}r)" stroke-width="6" opacity=".55" transform="rotate(-14 200 160)"/><circle cx="200" cy="160" r="82" fill="url(#${p}p)"/><path d="M48 186 A160 26 -14 0 0 352 110" fill="none" stroke="url(#${p}r)" stroke-width="6" transform="rotate(0)"/><circle cx="520" cy="60" r="14" fill="#ffe9b8"/><circle cx="520" cy="60" r="30" fill="#ffe9b8" opacity=".15"/>`);
+  } },
+  waves: { name: "Океан", place: "Офис, спа", svg() {
+    const p = "w" + (++uid);
+    const cols = [["#0a2742", "#0e3a5a"], ["#0f4a6e", "#13608a"], ["#1773a0", "#2a93bd"], ["#2b9fc4", "#5cc6dc"], ["#7fd9e6", "#c9f1f4"]];
+    let defs = lin(p + "s", ["#061626", "#0b2c48"]); let body = `<rect width="600" height="300" fill="url(#${p}s)"/>`;
+    cols.forEach((c, i) => { defs += lin(p + i, c); });
+    for (let i = 0; i < 5; i++) {
+      const y = 70 + i * 48; let d = `M0 300L0 ${y}`;
+      for (let x = 0; x <= 600; x += 10) d += `L${x} ${(y + Math.sin(x * .018 + i * 1.7) * 16 + Math.sin(x * .05 + i) * 5).toFixed(1)}`;
+      body += `<path d="${d}L600 300Z" fill="url(#${p}${i})"/>`;
+      let f = `M0 ${y}`; for (let x = 0; x <= 600; x += 10) f += `L${x} ${(y + Math.sin(x * .018 + i * 1.7) * 16 + Math.sin(x * .05 + i) * 5).toFixed(1)}`;
+      body += `<path d="${f}" fill="none" stroke="#e6fbff" stroke-opacity="${.12 + i * .08}" stroke-width="1.5"/>`;
+    }
+    return S(defs, body);
+  } },
+  forest: { name: "Туманный лес", place: "Кафе, клиника", svg() {
+    const p = "f" + (++uid);
+    const defs = lin(p + "s", ["#dfe8e1", "#a9bfb4", "#6f8d80"]) + lin(p + "m", ["#e8efe9cc", "#e8efe900"]);
+    const c = ["#8fa89c", "#5f7f71", "#3c5c50", "#203b33"]; let body = `<rect width="600" height="300" fill="url(#${p}s)"/>`;
+    for (let r = 0; r < 4; r++) {
+      for (let i = -1; i < 16; i++) {
+        const x = i * 42 + r * 17 + (i * 13 % 9), b = 120 + r * 55, h = 110 + (i * 7 + r * 11) % 60;
+        body += `<path d="M${x} ${b - h}L${x + 26} ${b - h * .45}L${x + 14} ${b - h * .45}L${x + 34} ${b + 70}L${x - 34} ${b + 70}L${x - 14} ${b - h * .45}L${x - 26} ${b - h * .45}Z" fill="${c[r]}"/>`;
+      }
+      if (r < 3) body += `<rect y="${150 + r * 55}" width="600" height="70" fill="url(#${p}m)"/>`;
+    }
+    return S(defs, body);
+  } },
+  bauhaus: { name: "Геометрия", place: "Коворкинг, шоурум", svg() {
+    const p = "b" + (++uid);
+    const c = ["#e9dcc6", "#c4553a", "#1f3a5f", "#e0a43a", "#2a2a2c", "#8fb0a6"];
+    let body = `<rect width="600" height="300" fill="#e9dcc6"/>`;
+    for (let y = 0; y < 3; y++) for (let x = 0; x < 6; x++) {
+      const a = c[(x * 2 + y) % 6], b = c[(x + y * 3 + 2) % 6], k = (x * 3 + y * 2) % 4, X = x * 100, Y = y * 100;
+      body += `<rect x="${X}" y="${Y}" width="100" height="100" fill="${a}"/>`;
+      body += k == 0 ? `<circle cx="${X + 50}" cy="${Y + 50}" r="38" fill="${b}"/>` : k == 1 ? `<path d="M${X} ${Y}h100v100z" fill="${b}"/>` : k == 2 ? `<path d="M${X} ${Y + 100}a100 100 0 0 1 100-100v100z" fill="${b}"/>` : `<rect x="${X + 30}" y="${Y}" width="40" height="100" fill="${b}"/>`;
+    }
+    return S(lin(p + "v", ["#ffffff18", "#00000030"]), body + `<rect width="600" height="300" fill="url(#${p}v)"/>`);
+  } },
+  flowers: { name: "Цветы", place: "Салон, ресторан", svg() {
+    const p = "fl" + (++uid);
+    let defs = rad(p + "b", [[0, "#1b2f45"], [1, "#070d16"]]) + `<filter id="${p}f" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="22"/></filter>`;
+    const fl = [[150, 150, 1.25, ["#ffd0df", "#e04a86", "#7d1747"]], [340, 190, 1.6, ["#ffe2b8", "#f0985a", "#8a3d17"]], [510, 100, 1.05, ["#fde4f0", "#e88bb7", "#7a2d55"]], [40, 270, .8, ["#fff5c8", "#f2c84b", "#8a6510"]], [585, 275, .95, ["#d8f6f4", "#55c2c0", "#1a5a5a"]]];
+    let body = `<rect width="600" height="300" fill="url(#${p}b)"/>`;
+    fl.forEach(([x, y, s, cs], j) => {
+      defs += `<radialGradient id="${p}${j}" cx=".5" cy="1" r="1"><stop offset="0" stop-color="${cs[2]}"/><stop offset=".55" stop-color="${cs[1]}"/><stop offset="1" stop-color="${cs[0]}"/></radialGradient>`;
+      body += `<circle cx="${x}" cy="${y}" r="${70 * s}" fill="${cs[1]}" opacity=".35" filter="url(#${p}f)"/>`;
+      for (let a = 0; a < 360; a += 36) body += `<ellipse cx="${x}" cy="${y - 46 * s}" rx="${18 * s}" ry="${46 * s}" fill="url(#${p}${j})" opacity=".92" transform="rotate(${a} ${x} ${y})"/>`;
+      body += `<circle cx="${x}" cy="${y}" r="${15 * s}" fill="#ffe08a"/><circle cx="${x}" cy="${y}" r="${7 * s}" fill="#c9861f"/>`;
+    });
+    return S(defs, body);
+  } }
 };
 
 const $ = id => document.getElementById(id);
@@ -470,6 +585,28 @@ function quote(area, k, design) {
   return { rate: t.rate, tier: t, print, total: print + design, cheaper, atMin: print === CONFIG.minOrder };
 }
 
+/* первый экран: стена печатается и меняет сюжет */
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const heroList = ["mountains", "flowers", "space", "waves"];
+const heroQ = quote(10, 1, 0);
+let heroI = 0;
+function heroShow(k, animate) {
+  const ink = $("heroArt"), layer = document.createElement("div");
+  layer.className = "layer"; layer.innerHTML = ARTS[k].svg();
+  ink.append(layer);
+  $("heroGlow").innerHTML = ARTS[k].svg();
+  $("heroChip").innerHTML = `${ARTS[k].name} · 4 × 2,5 м · <b>${rub(heroQ.print)}</b>`;
+  if (animate) {
+    layer.classList.add("go");
+    const sc = $("heroScan"); sc.classList.remove("go"); void sc.offsetWidth; sc.classList.add("go");
+    setTimeout(() => { while (ink.children.length > 1) ink.firstChild.remove(); }, 2700);
+  } else while (ink.children.length > 1) ink.firstChild.remove();
+}
+heroShow(heroList[0], false);
+if (!reduce) setInterval(() => { if (document.hidden) return; heroI = (heroI + 1) % heroList.length; heroShow(heroList[heroI], true); }, 6500);
+$("stripPrice").textContent = rub(CONFIG.tiers[CONFIG.tiers.length - 1].rate).replace(" ₽", " ₽");
+
+/* примерочная */
 const state = { art: "mountains", photo: null, cx: .42, cy: .5, summary: "" };
 const stage = $("stage"), printEl = $("print");
 
@@ -500,6 +637,7 @@ function update() {
 
   const area = w * h * n;
   const surf = CONFIG.surfaces[$("surf").selectedIndex], des = CONFIG.designs[$("des").selectedIndex];
+  stage.dataset.s = surf.id;
   const q = quote(area, surf.k, des.cost);
   const hours = Math.ceil(area / CONFIG.metersPerHour);
   $("wo").textContent = m(w) + " м";
@@ -516,11 +654,6 @@ function update() {
   state.summary = `Сюжет: ${artName}. Размер ${m(w)} × ${m(h)} м, стен: ${n}, всего ${m(area)} м². ${surf.name}. ${des.name}. Предварительно ${rub(q.total)}.`;
   if (!$("fc").dataset.edited) $("fc").value = state.summary;
 }
-
-/* заполнение страницы */
-$("heroArt").innerHTML = ARTS.mountains.svg();
-const heroQ = quote(10, 1, 0);
-$("heroPrice").textContent = `${rub(heroQ.print)} за такую стену`;
 
 CONFIG.surfaces.forEach(s => $("surf").add(new Option(s.name + (s.k > 1 ? ` (+${Math.round((s.k - 1) * 100)}%)` : ""), s.id)));
 CONFIG.designs.forEach(d => $("des").add(new Option(d.name + (d.cost ? ` (+${rub(d.cost)})` : ""))));
@@ -547,7 +680,7 @@ $("file").onchange = e => {
   const [k, c] = s.split("|");
   const b = document.createElement("button");
   b.type = "button"; b.className = "tile " + c;
-  b.innerHTML = ARTS[k].svg() + `<span><b>${ARTS[k].name}</b><small>${ARTS[k].place}</small></span>`;
+  b.innerHTML = ARTS[k].svg() + `<span><span style="position:static;display:grid;gap:4px"><b>${ARTS[k].name}</b><small>${ARTS[k].place}</small></span><i>Примерить →</i></span>`;
   b.onclick = () => { state.art = k; state.photo = null; renderArt(); update(); $("fit").scrollIntoView(); };
   $("mosaic").append(b);
 });
@@ -582,13 +715,15 @@ if (CONFIG.reviews.length) {
 }
 [["Telegram", CONFIG.telegram], ["MAX", CONFIG.max], ["Почта", CONFIG.email && "mailto:" + CONFIG.email]].forEach(([name, href]) => {
   if (!href) return;
-  const a = document.createElement("a"); a.className = "btn ghost"; a.href = href; a.textContent = name;
+  const a = document.createElement("a"); a.className = "btn ghost"; a.href = href; a.textContent = "Написать в " + name;
+  if (name === "Почта") a.textContent = "Написать на почту";
+  if (href.startsWith("http")) { a.target = "_blank"; a.rel = "noopener"; }
   $("contacts").append(a);
 });
 
-document.querySelectorAll("[data-phone]").forEach(a => {
+document.querySelectorAll("[data-phone], [data-phone-big]").forEach(a => {
   if (CONFIG.phone) { a.textContent = CONFIG.phone; a.href = CONFIG.phoneHref; }
-  else if (CONFIG.telegram) { a.textContent = "Написать в Telegram"; a.href = CONFIG.telegram; a.target = "_blank"; a.rel = "noopener"; }
+  else if (CONFIG.telegram && a.hasAttribute("data-phone")) { a.textContent = "Написать в Telegram"; a.href = CONFIG.telegram; a.target = "_blank"; a.rel = "noopener"; }
   else a.hidden = true;
 });
 document.querySelectorAll("[data-phone-text]").forEach(a => a.textContent = CONFIG.phone || (CONFIG.telegram ? "Telegram: " + CONFIG.telegram.replace("https://t.me/", "@") : ""));
@@ -596,7 +731,7 @@ document.querySelectorAll("[data-phone-text]").forEach(a => a.textContent = CONF
 ["w", "h", "n", "surf", "des"].forEach(id => $(id).addEventListener("input", update));
 $("fc").addEventListener("input", e => e.target.dataset.edited = "1");
 
-/* перетаскивание печати */
+/* перетаскивание изображения по стене */
 let drag = null;
 printEl.addEventListener("pointerdown", e => {
   printEl.setPointerCapture(e.pointerId);
@@ -623,11 +758,11 @@ $("form").addEventListener("submit", async e => {
     try { await navigator.clipboard.writeText(text); copied = true; } catch {}
     if (CONFIG.telegram) {
       done.textContent = "Осталось одно нажатие: откройте Telegram и отправьте заявку. " + (copied ? "Текст уже скопирован, вставьте его в чат." : "Скопируйте текст ниже и вставьте его в чат.") + "\n\n" + text;
-      const a = document.createElement("a"); a.className = "btn"; a.style.marginTop = "12px";
+      const a = document.createElement("a"); a.className = "btn"; a.style.marginTop = "14px";
       a.href = CONFIG.telegram; a.target = "_blank"; a.rel = "noopener"; a.textContent = "Открыть Telegram";
       done.append(document.createElement("br"), a);
     } else {
-      done.textContent = "Заявки пока не принимаются через сайт.";
+      done.textContent = "Заявки пока не принимаются через сайт. Позвоните нам: " + CONFIG.phone;
     }
     return;
   }
