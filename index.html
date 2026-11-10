@@ -227,7 +227,7 @@ footer .logo { color: var(--paper); }
       <a href="#price">Цены</a>
       <a href="#faq">Вопросы</a>
     </nav>
-    <a class="call" data-phone href="tel:+70000000000">+7 (000) 000-00-00</a>
+    <a class="call" data-phone href="tel:+79221717929">+7 (922) 171-79-29</a>
   </div>
 </header>
 
@@ -394,7 +394,7 @@ footer .logo { color: var(--paper); }
 <footer>
   <div class="wrap">
     <span class="logo"><span class="cmyk"><i></i><i></i><i></i></span>Настенно</span>
-    <span data-phone-text>+7 (000) 000-00-00</span>
+    <span data-phone-text>+7 (922) 171-79-29</span>
     <span>Екатеринбург и Свердловская область</span>
     <span>Реквизиты компании будут здесь</span>
   </div>
@@ -403,10 +403,10 @@ footer .logo { color: var(--paper); }
 <script>
 /* Всё, что нужно заменить перед запуском, находится здесь */
 const CONFIG = {
-  phone: "+7 (000) 000-00-00",
-  phoneHref: "tel:+70000000000",
-  endpoint: null, // адрес приёма заявок; пока null, форма работает в демо-режиме
-  telegram: "", // ссылка вида https://t.me/имя
+  phone: "+7 (922) 171-79-29",
+  phoneHref: "tel:+79221717929",
+  endpoint: null, // адрес приёма заявок; пока null, заявка уходит через Telegram
+  telegram: "https://t.me/ekbuae",
   max: "",      // ссылка на профиль в MAX
   email: "",
   // Настоящие фото работ: { src: "works/1.jpg", title: "Кафе, 12 м²" }. Пока пусто, блок скрыт.
@@ -586,8 +586,12 @@ if (CONFIG.reviews.length) {
   $("contacts").append(a);
 });
 
-document.querySelectorAll("[data-phone]").forEach(a => { a.textContent = CONFIG.phone; a.href = CONFIG.phoneHref; });
-document.querySelectorAll("[data-phone-text]").forEach(a => a.textContent = CONFIG.phone);
+document.querySelectorAll("[data-phone]").forEach(a => {
+  if (CONFIG.phone) { a.textContent = CONFIG.phone; a.href = CONFIG.phoneHref; }
+  else if (CONFIG.telegram) { a.textContent = "Написать в Telegram"; a.href = CONFIG.telegram; a.target = "_blank"; a.rel = "noopener"; }
+  else a.hidden = true;
+});
+document.querySelectorAll("[data-phone-text]").forEach(a => a.textContent = CONFIG.phone || (CONFIG.telegram ? "Telegram: " + CONFIG.telegram.replace("https://t.me/", "@") : ""));
 
 ["w", "h", "n", "surf", "des"].forEach(id => $(id).addEventListener("input", update));
 $("fc").addEventListener("input", e => e.target.dataset.edited = "1");
@@ -614,7 +618,17 @@ $("form").addEventListener("submit", async e => {
   const done = $("done");
   done.hidden = false;
   if (!CONFIG.endpoint) {
-    done.textContent = "Демо-режим: заявка никуда не отправлена.\nПодключите адрес приёма заявок в CONFIG.endpoint.";
+    const text = `Здравствуйте! Заявка с сайта.\nИмя: ${data.name}\nТелефон: ${data.phone}\n${data.calc}`;
+    let copied = false;
+    try { await navigator.clipboard.writeText(text); copied = true; } catch {}
+    if (CONFIG.telegram) {
+      done.textContent = "Осталось одно нажатие: откройте Telegram и отправьте заявку. " + (copied ? "Текст уже скопирован, вставьте его в чат." : "Скопируйте текст ниже и вставьте его в чат.") + "\n\n" + text;
+      const a = document.createElement("a"); a.className = "btn"; a.style.marginTop = "12px";
+      a.href = CONFIG.telegram; a.target = "_blank"; a.rel = "noopener"; a.textContent = "Открыть Telegram";
+      done.append(document.createElement("br"), a);
+    } else {
+      done.textContent = "Заявки пока не принимаются через сайт.";
+    }
     return;
   }
   try {
@@ -623,7 +637,7 @@ $("form").addEventListener("submit", async e => {
     done.textContent = "Заявка отправлена. Перезвоним в рабочее время.";
     e.target.reset();
   } catch {
-    done.textContent = "Заявка не отправилась. Проверьте интернет и попробуйте ещё раз или позвоните: " + CONFIG.phone;
+    done.textContent = "Заявка не отправилась. Проверьте интернет и попробуйте ещё раз или напишите нам: " + (CONFIG.phone || CONFIG.telegram);
   }
 });
 
